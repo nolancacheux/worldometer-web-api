@@ -1,4 +1,6 @@
- src/
+- dist/
+- node_modules/
+- src/
   - controllers/
     - population.controller.ts
     - government-economy.controller.ts
@@ -47,3 +49,12 @@
     - water.service.spec.ts
     - energy.service.spec.ts
     - health.service.spec.ts
+.enlintrc.js
+.prettierrc
+nest-cli.json
+package-lock.json
+package.json
+README.md
+tsconfig.build.json
+tsconfig.json
+sql_etapes.txt (étapes que l'on renseignera pour mettre les requetes qu'une personnes collaboratrice doit rentrer pour accéder à la même table)
