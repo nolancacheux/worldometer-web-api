@@ -25,4 +25,12 @@ export class EnergyService {
   async delete(id: number): Promise<void> {
     await this.energyRepository.delete(id);
   }
+
+  async getLatestEnergyData(): Promise<Energy> {
+    const data = await this.energyRepository.find({
+        order: { created_at: 'DESC' },
+        take: 1,
+      });
+      return data[0];
+  }
 }

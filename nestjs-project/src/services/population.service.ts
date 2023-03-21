@@ -25,4 +25,12 @@ export class PopulationService {
   async delete(id: number): Promise<void> {
     await this.populationRepository.delete(id);
   }
+
+  async getLatestPopulationData(): Promise<Population> {
+    const data = await this.populationRepository.find({
+        order: { created_at: 'DESC' },
+        take: 1,
+      });
+      return data[0];
+  }
 }

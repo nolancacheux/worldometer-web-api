@@ -1,9 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, CreateDateColumn } from 'typeorm';
 
-@Entity()
+@Entity('water')
 export class Water {
-  @PrimaryGeneratedColumn()
-  id: number;
+    @CreateDateColumn({ type: 'datetime', primary: true })
+    created_at: Date;
 
   @Column()
   water_used_this_year: number;

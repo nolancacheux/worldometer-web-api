@@ -1,9 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, CreateDateColumn } from 'typeorm';
 
-@Entity()
+@Entity('food')
 export class Food {
-  @PrimaryGeneratedColumn()
-  id: number;
+    
+    @CreateDateColumn({ type: 'datetime', primary: true })
+    created_at: Date;
 
   @Column()
   undernourished_people_in_the_world: number;

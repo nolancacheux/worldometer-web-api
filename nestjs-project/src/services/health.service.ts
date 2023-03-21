@@ -25,4 +25,13 @@ export class HealthService {
   async delete(id: number): Promise<void> {
     await this.healthRepository.delete(id);
   }
+
+  
+  async getLatestHealthData(): Promise<Health> {
+    const data = await this.healthRepository.find({
+        order: { created_at: 'DESC' },
+        take: 1,
+      });
+      return data[0];
+  }
 }

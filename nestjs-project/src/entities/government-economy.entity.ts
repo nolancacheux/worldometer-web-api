@@ -1,9 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, CreateDateColumn } from 'typeorm';
 
-@Entity()
+@Entity('government')
 export class GovernmentEconomy {
-  @PrimaryGeneratedColumn()
-  id: number;
+    @CreateDateColumn({ type: 'datetime', primary: true })
+    created_at: Date;
 
   @Column()
   global_medical_spending_today: number;

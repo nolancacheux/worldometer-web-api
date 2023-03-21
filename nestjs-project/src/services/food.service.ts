@@ -25,4 +25,11 @@ export class FoodService {
   async delete(id: number): Promise<void> {
     await this.foodRepository.delete(id);
   }
+  async getLatestFoodData(): Promise<Food> {
+    const data = await this.foodRepository.find({
+        order: { created_at: 'DESC' },
+        take: 1,
+      });
+      return data[0];
+  }
 }

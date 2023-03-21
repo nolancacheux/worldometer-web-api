@@ -1,9 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, CreateDateColumn } from 'typeorm';
 
-@Entity()
+@Entity('energy')
 export class Energy {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @CreateDateColumn({ type: 'datetime', primary: true })
+  created_at: Date;
 
   @Column()
   energy_used_today: number;

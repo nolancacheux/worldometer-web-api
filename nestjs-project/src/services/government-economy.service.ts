@@ -25,4 +25,12 @@ export class GovernmentEconomyService {
   async delete(id: number): Promise<void> {
     await this.governmentEconomyRepository.delete(id);
   }
+  
+  async getLatestGovernmentEconomyData(): Promise<GovernmentEconomy> {
+    const data = await this.governmentEconomyRepository.find({
+        order: { created_at: 'DESC' },
+        take: 1,
+      });
+      return data[0];
+  }
 }

@@ -25,4 +25,11 @@ export class EnvironmentService {
   async delete(id: number): Promise<void> {
     await this.environmentRepository.delete(id);
   }
+  async getLatestEnvironmentData(): Promise<Environment> {
+    const data = await this.environmentRepository.find({
+        order: { created_at: 'DESC' },
+        take: 1,
+      });
+      return data[0];
+  }
 }

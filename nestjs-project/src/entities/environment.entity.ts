@@ -1,9 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, CreateDateColumn } from 'typeorm';
 
-@Entity()
+@Entity('environment')
 export class Environment {
-  @PrimaryGeneratedColumn()
-  id: number;
+
+@CreateDateColumn({ type: 'datetime', primary: true })
+created_at: Date;
 
   @Column()
   forest_lost_this_year: number;

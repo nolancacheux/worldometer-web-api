@@ -25,4 +25,11 @@ export class SocietyMediaService {
   async delete(id: number): Promise<void> {
     await this.societyMediaRepository.delete(id);
   }
+  async getLatestSocietyMediaData(): Promise<SocietyMedia> {
+    const data = await this.societyMediaRepository.find({
+        order: { created_at: 'DESC' },
+        take: 1,
+      });
+      return data[0];
+  }
 }

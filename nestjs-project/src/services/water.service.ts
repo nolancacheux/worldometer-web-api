@@ -25,4 +25,12 @@ export class WaterService {
   async delete(id: number): Promise<void> {
     await this.waterRepository.delete(id);
   }
+  
+  async getLatestWaterData(): Promise<Water> {
+    const data = await this.waterRepository.find({
+        order: { created_at: 'DESC' },
+        take: 1,
+      });
+      return data[0];
+  }
 }
