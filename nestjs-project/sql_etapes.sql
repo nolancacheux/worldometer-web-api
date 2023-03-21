@@ -1,15 +1,7 @@
---VOICI TOutes les étapes QQUE TU VAS SUIVRE POUR RECREER LA BDD : 
-
---1) NOuvelle base de données worldometers :
 
 CREATE DATABASE worldometers;
 
-
---2) Utilise la base de données worldometers :
-
 USE worldometers;
-
---3) on va venir créeer la ttable pour stocker les données de population mondiale :
 
 CREATE TABLE population (
   id INT NOT NULL AUTO_INCREMENT,
@@ -22,10 +14,6 @@ CREATE TABLE population (
   growth_today BIGINT NOT NULL,
   PRIMARY KEY (id)
 );
-
---4)ON fait idemm poir les tables similaires pour stocker les données des autres catégories 
---(gouvernement et économie, société et médias, environnement, alimentation, eau, énergie, santé) : 
-
 
 CREATE TABLE government_economy (
   id INT NOT NULL AUTO_INCREMENT,
@@ -72,7 +60,7 @@ CREATE TABLE food (
   overweight_people_in_the_world BIGINT NOT NULL,
   obese_people_in_the_world BIGINT NOT NULL,
   people_who_died_of_hunger_today BIGINT NOT NULL,
-  money_spent_on_obesity-related_illnesses_in_us_today BIGINT NOT NULL,
+  money_spent_on_obesity_related_illnesses_in_us_today BIGINT NOT NULL,
   money_spent_on_weight_loss_programs_in_us_today BIGINT NOT NULL,
   PRIMARY KEY (id)
 );
@@ -81,7 +69,7 @@ CREATE TABLE food (
 CREATE TABLE water (
   id INT NOT NULL AUTO_INCREMENT,
   water_used_this_year BIGINT NOT NULL,
-  water-related_deaths_this_year BIGINT NOT NULL,
+  water_related_deaths_this_year BIGINT NOT NULL,
   people_without_access_to_clean_water BIGINT NOT NULL,
   PRIMARY KEY (id)
 );
@@ -122,8 +110,6 @@ CREATE TABLE health (
   PRIMARY KEY (id)
 );
 
-
-5) Données de test dans chaque table  :
 INSERT INTO population (
 current_population,
 births_this_year,
@@ -256,42 +242,34 @@ VALUES (
 );
 
 INSERT INTO health (
-deaths_this_year,
-child_deaths_this_year,
-abortions_this_year,
-maternal_deaths_this_year,
-hiv_cases_this_year,
-hiv_deaths_this_year,
-cancer_deaths_this_year,
-malaria_deaths_this_year,
-cigarettes_smoked_today,
-cigarette_deaths_this_year,
-alcohol_deaths_this_year,
-suicides_this_year,
-drug_spending_this_year,
-road_traffic_accident_deaths_this_year
+  deaths_this_year,
+  child_deaths_this_year,
+  abortions_this_year,
+  maternal_deaths_this_year,
+  hiv_cases_this_year,
+  hiv_deaths_this_year,
+  cancer_deaths_this_year,
+  malaria_deaths_this_year,
+  cigarettes_smoked_today,
+  cigarette_deaths_this_year,
+  alcohol_deaths_this_year,
+  suicides_this_year,
+  drug_spending_this_year,
+  road_traffic_accident_deaths_this_year
 )
 VALUES (
-59046634,
-7681430,
-4062620,
-2144420,
-4010000,
-1249093,
-9391554,
-389102,
-190273,
-5797,
-2928558,
-800119,
-1357540,
-201541,
-1374360
+  59046634,
+  7681430,
+  4062620,
+  2144420,
+  4010000,
+  1249093,
+  9391554,
+  389102,
+  190273,
+  5797,
+  2928558,
+  1357540,
+  201541,
+  1374360
 );
-
---+) exemples de requetes à faire pour récupérer des données à partir des tables pour voir si tout est okk :
-
---SELECT * FROM population;
---SELECT current_population FROM population;
---UPDATE population SET current_population = 8022968574 WHERE id = 1;
---DELETE FROM population WHERE id = 1;
