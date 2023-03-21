@@ -24,6 +24,9 @@ import { FoodService } from './services/food.service';
 import { WaterService } from './services/water.service';
 import { EnergyService } from './services/energy.service';
 import { HealthService } from './services/health.service';
+import { DataInsertionService } from './services/data-insertion.service';
+
+
 
 @Module({
   imports: [
@@ -44,7 +47,7 @@ import { HealthService } from './services/health.service';
         Energy,
         Health,
       ],
-      synchronize: true,
+      synchronize: false,
     }),
     TypeOrmModule.forFeature([
       Population,
@@ -76,6 +79,7 @@ import { HealthService } from './services/health.service';
     WaterService,
     EnergyService,
     HealthService,
+    DataInsertionService,
   ],
 })
 export class AppModule {}

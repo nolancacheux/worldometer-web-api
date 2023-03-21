@@ -55,7 +55,7 @@ AppModule = __decorate([
                     energy_entity_1.Energy,
                     health_entity_1.Health,
                 ],
-                synchronize: true,
+                synchronize: false,
             }),
             typeorm_1.TypeOrmModule.forFeature([
                 population_entity_1.Population,

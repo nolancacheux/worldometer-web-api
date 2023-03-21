@@ -40,27 +40,27 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Energy.prototype, "remaining_oil_reserves", void 0);
+], Energy.prototype, "oil_remaining", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Energy.prototype, "days_to_end_of_oil", void 0);
+], Energy.prototype, "days_to_the_end_of_oil", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Energy.prototype, "remaining_gas_reserves", void 0);
+], Energy.prototype, "gas_remaining", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Energy.prototype, "days_to_end_of_gas", void 0);
+], Energy.prototype, "days_to_the_end_of_gas", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Energy.prototype, "remaining_coal_reserves", void 0);
+], Energy.prototype, "coal_remaining", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Energy.prototype, "days_to_end_of_coal", void 0);
+], Energy.prototype, "days_to_the_end_of_coal", void 0);
 Energy = __decorate([
     (0, typeorm_1.Entity)('energy')
 ], Energy);

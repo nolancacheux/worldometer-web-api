@@ -5,6 +5,6 @@ export declare class Population {
     births_today: number;
     deaths_this_year: number;
     deaths_today: number;
-    population_growth_this_year: number;
-    population_growth_today: number;
+    growth_this_year: number;
+    growth_today: number;
 }

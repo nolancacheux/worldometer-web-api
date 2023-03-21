@@ -2,8 +2,8 @@ import { Entity, Column, CreateDateColumn } from 'typeorm';
 
 @Entity('population')
 export class Population {
-    @CreateDateColumn({ type: 'datetime', primary: true })
-    created_at: Date;
+  @CreateDateColumn({ type: 'datetime', primary: true })
+  created_at: Date;
 
   @Column()
   current_population: number;
@@ -21,8 +21,8 @@ export class Population {
   deaths_today: number;
 
   @Column()
-  population_growth_this_year: number;
+  growth_this_year: number;
 
   @Column()
-  population_growth_today: number;
+  growth_today: number;
 }

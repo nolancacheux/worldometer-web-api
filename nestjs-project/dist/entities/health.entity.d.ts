@@ -1,6 +1,5 @@
 export declare class Health {
     created_at: Date;
-    deaths_due_to_smoking_this_year: number;
     deaths_of_children_under_five_this_year: number;
     abortions_this_year: number;
     maternal_deaths_this_year: number;

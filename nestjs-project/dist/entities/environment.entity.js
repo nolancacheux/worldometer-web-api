@@ -20,7 +20,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Environment.prototype, "forest_lost_this_year", void 0);
+], Environment.prototype, "forest_area_lost_this_year", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)

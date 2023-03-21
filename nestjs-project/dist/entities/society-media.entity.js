@@ -20,7 +20,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], SocietyMedia.prototype, "new_titles_published_this_year", void 0);
+], SocietyMedia.prototype, "new_books_published_this_year", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
@@ -28,7 +28,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], SocietyMedia.prototype, "televisions_sold_today", void 0);
+], SocietyMedia.prototype, "tvs_sold_today", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
@@ -36,7 +36,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], SocietyMedia.prototype, "money_spent_on_video_games_today", void 0);
+], SocietyMedia.prototype, "video_games_spending_today", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
@@ -48,7 +48,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], SocietyMedia.prototype, "blog_posts_made_today", void 0);
+], SocietyMedia.prototype, "blog_posts_written_today", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
@@ -56,7 +56,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], SocietyMedia.prototype, "google_searches_made_today", void 0);
+], SocietyMedia.prototype, "google_searches_today", void 0);
 SocietyMedia = __decorate([
     (0, typeorm_1.Entity)('society-media')
 ], SocietyMedia);

@@ -20,7 +20,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], GovernmentEconomy.prototype, "global_medical_spending_today", void 0);
+], GovernmentEconomy.prototype, "global_health_spending_today", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)

@@ -16,11 +16,11 @@ export class Food {
   obese_people_in_the_world: number;
 
   @Column()
-  people_died_of_hunger_today: number;
+  people_who_died_of_hunger_today: number;
 
   @Column()
-  money_spent_on_obesity_related_illnesses_today: number;
+  money_spent_on_obesity_related_illnesses_in_us_today: number;
 
   @Column()
-  money_spent_on_weight_loss_programs_today: number;
+  money_spent_on_weight_loss_programs_in_us_today: number;
 }

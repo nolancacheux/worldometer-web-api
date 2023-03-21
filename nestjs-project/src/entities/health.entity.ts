@@ -6,9 +6,6 @@ export class Health {
     created_at: Date;
 
   @Column()
-  deaths_due_to_smoking_this_year: number;
-
-  @Column()
   deaths_of_children_under_five_this_year: number;
 
   @Column()
@@ -47,3 +44,4 @@ export class Health {
   @Column()
   deaths_caused_by_road_traffic_accidents_this_year: number;
 }
+

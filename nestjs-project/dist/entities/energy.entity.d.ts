@@ -5,10 +5,10 @@ export declare class Energy {
     renewable_sources_used_today: number;
     solar_energy_reaching_earth_today: number;
     oil_pumped_today: number;
-    remaining_oil_reserves: number;
-    days_to_end_of_oil: number;
-    remaining_gas_reserves: number;
-    days_to_end_of_gas: number;
-    remaining_coal_reserves: number;
-    days_to_end_of_coal: number;
+    oil_remaining: number;
+    days_to_the_end_of_oil: number;
+    gas_remaining: number;
+    days_to_the_end_of_gas: number;
+    coal_remaining: number;
+    days_to_the_end_of_coal: number;
 }

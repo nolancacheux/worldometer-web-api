@@ -40,11 +40,11 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Population.prototype, "population_growth_this_year", void 0);
+], Population.prototype, "growth_this_year", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Population.prototype, "population_growth_today", void 0);
+], Population.prototype, "growth_today", void 0);
 Population = __decorate([
     (0, typeorm_1.Entity)('population')
 ], Population);

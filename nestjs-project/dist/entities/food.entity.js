@@ -32,15 +32,15 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Food.prototype, "people_died_of_hunger_today", void 0);
+], Food.prototype, "people_who_died_of_hunger_today", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Food.prototype, "money_spent_on_obesity_related_illnesses_today", void 0);
+], Food.prototype, "money_spent_on_obesity_related_illnesses_in_us_today", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Food.prototype, "money_spent_on_weight_loss_programs_today", void 0);
+], Food.prototype, "money_spent_on_weight_loss_programs_in_us_today", void 0);
 Food = __decorate([
     (0, typeorm_1.Entity)('food')
 ], Food);

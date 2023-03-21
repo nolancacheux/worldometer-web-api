@@ -21,20 +21,20 @@ export class Energy {
   oil_pumped_today: number;
 
   @Column()
-  remaining_oil_reserves: number;
+  oil_remaining: number;
 
   @Column()
-  days_to_end_of_oil: number;
+  days_to_the_end_of_oil: number;
 
   @Column()
-  remaining_gas_reserves: number;
+  gas_remaining: number;
 
   @Column()
-  days_to_end_of_gas: number;
+  days_to_the_end_of_gas: number;
 
   @Column()
-  remaining_coal_reserves: number;
+  coal_remaining: number;
 
   @Column()
-  days_to_end_of_coal: number;
+  days_to_the_end_of_coal: number;
 }

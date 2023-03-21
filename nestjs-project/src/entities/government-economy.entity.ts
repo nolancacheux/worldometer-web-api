@@ -6,7 +6,7 @@ export class GovernmentEconomy {
     created_at: Date;
 
   @Column()
-  global_medical_spending_today: number;
+  global_health_spending_today: number;
 
   @Column()
   global_education_spending_today: number;

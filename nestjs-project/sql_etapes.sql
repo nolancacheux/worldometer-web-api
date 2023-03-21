@@ -90,22 +90,22 @@ CREATE TABLE energy (
   PRIMARY KEY (created_at)
 );
 
+
 CREATE TABLE health (
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  deaths_this_year BIGINT NOT NULL,
-  child_deaths_this_year BIGINT NOT NULL,
+  deaths_of_children_under_five_this_year BIGINT NOT NULL,
   abortions_this_year BIGINT NOT NULL,
   maternal_deaths_this_year BIGINT NOT NULL,
-  hiv_cases_this_year BIGINT NOT NULL,
-  hiv_deaths_this_year BIGINT NOT NULL,
-  cancer_deaths_this_year BIGINT NOT NULL,
-  malaria_deaths_this_year BIGINT NOT NULL,
+  people_infected_with_hiv_aids BIGINT NOT NULL,
+  deaths_caused_by_hiv_aids_this_year BIGINT NOT NULL,
+  deaths_caused_by_cancer_this_year BIGINT NOT NULL,
+  deaths_caused_by_malaria_this_year BIGINT NOT NULL,
   cigarettes_smoked_today BIGINT NOT NULL,
-  cigarette_deaths_this_year BIGINT NOT NULL,
-  alcohol_deaths_this_year BIGINT NOT NULL,
+  deaths_caused_by_smoking_this_year BIGINT NOT NULL,
+  deaths_caused_by_alcohol_this_year BIGINT NOT NULL,
   suicides_this_year BIGINT NOT NULL,
-  drug_spending_this_year BIGINT NOT NULL,
-  road_traffic_accident_deaths_this_year BIGINT NOT NULL,
+  money_spent_on_illegal_drugs_this_year BIGINT NOT NULL,
+  deaths_caused_by_road_traffic_accidents_this_year BIGINT NOT NULL,
   PRIMARY KEY (created_at)
 );
 
@@ -253,38 +253,35 @@ NOW(),
 1086980000000,
 142
 );
-
 INSERT INTO health (
-  created_at,
-  deaths_this_year,
-  child_deaths_this_year,
-  abortions_this_year,
-  maternal_deaths_this_year,
-  hiv_cases_this_year,
-  hiv_deaths_this_year,
-  cancer_deaths_this_year,
-  malaria_deaths_this_year,
-  cigarettes_smoked_today,
-  cigarette_deaths_this_year,
-  alcohol_deaths_this_year,
-  suicides_this_year,
-  drug_spending_this_year,
-  road_traffic_accident_deaths_this_year
-)
-VALUES (
-  NOW(),
-  59046634,
-  7681430,
-  4062620,
-  2144420,
-  4010000,
-  1249093,
-  9391554,
-  389102,
-  190273,
-  5797,
-  2928558,
-  1357540,
-  201541,
-  1374360
-);
+    created_at,
+    deaths_of_children_under_five_this_year,
+    abortions_this_year,
+    maternal_deaths_this_year,
+    people_infected_with_hiv_aids,
+    deaths_caused_by_hiv_aids_this_year,
+    deaths_caused_by_cancer_this_year,
+    deaths_caused_by_malaria_this_year,
+    cigarettes_smoked_today,
+    deaths_caused_by_smoking_this_year,
+    deaths_caused_by_alcohol_this_year,
+    suicides_this_year,
+    money_spent_on_illegal_drugs_this_year,
+    deaths_caused_by_road_traffic_accidents_this_year
+  )
+  VALUES (
+    NOW(),
+    59046634,
+    7681430,
+    4062620,
+    2144420,
+    4010000,
+    1249093,
+    9391554,
+    389102,
+    190273,
+    5797,
+    2928558,
+    1357540,
+    201541
+  );

@@ -6,19 +6,19 @@ export class SocietyMedia {
     created_at: Date;
 
   @Column()
-  new_titles_published_this_year: number;
+  new_books_published_this_year: number;
 
   @Column()
   newspaper_copies_printed_today: number;
 
   @Column()
-  televisions_sold_today: number;
+  tvs_sold_today: number;
 
   @Column()
   mobile_phones_sold_today: number;
 
   @Column()
-  money_spent_on_video_games_today: number;
+  video_games_spending_today: number;
 
   @Column()
   internet_users_in_the_world: number;
@@ -27,11 +27,11 @@ export class SocietyMedia {
   emails_sent_today: number;
 
   @Column()
-  blog_posts_made_today: number;
+  blog_posts_written_today: number;
 
   @Column()
   tweets_sent_today: number;
 
   @Column()
-  google_searches_made_today: number;
+  google_searches_today: number;
 }

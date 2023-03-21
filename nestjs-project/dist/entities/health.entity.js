@@ -20,10 +20,6 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Health.prototype, "deaths_due_to_smoking_this_year", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
 ], Health.prototype, "deaths_of_children_under_five_this_year", void 0);
 __decorate([
     (0, typeorm_1.Column)(),

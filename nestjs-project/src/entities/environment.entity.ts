@@ -7,7 +7,7 @@ export class Environment {
 created_at: Date;
 
   @Column()
-  forest_lost_this_year: number;
+  forest_area_lost_this_year: number;
 
   @Column()
   arable_land_lost_this_year: number;
@@ -21,3 +21,4 @@ created_at: Date;
   @Column()
   toxic_chemicals_released_this_year: number;
 }
+
