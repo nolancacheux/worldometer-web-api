@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { SocietyMedia } from '../entities/society-media.entity';
+import { SocietyMedia } from '../entities/society_media.entity';
 export declare class SocietyMediaService {
     private readonly societyMediaRepository;
     constructor(societyMediaRepository: Repository<SocietyMedia>);

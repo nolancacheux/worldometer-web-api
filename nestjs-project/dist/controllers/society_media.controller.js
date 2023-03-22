@@ -9,15 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GovernmentEconomyController = void 0;
+exports.SocietyMediaController = void 0;
 const common_1 = require("@nestjs/common");
-const government_economy_service_1 = require("../services/government-economy.service");
-let GovernmentEconomyController = class GovernmentEconomyController {
-    constructor(governmentEconomyService) {
-        this.governmentEconomyService = governmentEconomyService;
+const society_media_service_1 = require("../services/society_media.service");
+let SocietyMediaController = class SocietyMediaController {
+    constructor(societyMediaService) {
+        this.societyMediaService = societyMediaService;
     }
-    async getGovernmentEconomyData() {
-        return this.governmentEconomyService.getLatestGovernmentEconomyData();
+    async getSocietyMediaData() {
+        return this.societyMediaService.getLatestSocietyMediaData();
     }
 };
 __decorate([
@@ -25,10 +25,10 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], GovernmentEconomyController.prototype, "getGovernmentEconomyData", null);
-GovernmentEconomyController = __decorate([
-    (0, common_1.Controller)('government-economy'),
-    __metadata("design:paramtypes", [government_economy_service_1.GovernmentEconomyService])
-], GovernmentEconomyController);
-exports.GovernmentEconomyController = GovernmentEconomyController;
-//# sourceMappingURL=government-economy.controller.js.map
+], SocietyMediaController.prototype, "getSocietyMediaData", null);
+SocietyMediaController = __decorate([
+    (0, common_1.Controller)('society-media'),
+    __metadata("design:paramtypes", [society_media_service_1.SocietyMediaService])
+], SocietyMediaController);
+exports.SocietyMediaController = SocietyMediaController;
+//# sourceMappingURL=society_media.controller.js.map

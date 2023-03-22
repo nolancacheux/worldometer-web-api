@@ -17,7 +17,7 @@ let EnergyController = class EnergyController {
         this.energyService = energyService;
     }
     async getEnergyData() {
-        return this.energyService.getLatestEnergyData();
+        return this.energyService.findAll();
     }
 };
 __decorate([

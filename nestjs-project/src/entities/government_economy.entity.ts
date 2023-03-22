@@ -1,6 +1,6 @@
 import { Entity, Column, CreateDateColumn } from 'typeorm';
 
-@Entity('government')
+@Entity('government_economy')
 export class GovernmentEconomy {
     @CreateDateColumn({ type: 'datetime', primary: true })
     created_at: Date;

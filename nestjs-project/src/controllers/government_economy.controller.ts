@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
-import { GovernmentEconomyService } from '../services/government-economy.service';
-import { GovernmentEconomy } from '../entities/government-economy.entity';
+import { GovernmentEconomyService } from '../services/government_economy.service';
+import { GovernmentEconomy } from '../entities/government_economy.entity';
 
 @Controller('government-economy')
 export class GovernmentEconomyController {

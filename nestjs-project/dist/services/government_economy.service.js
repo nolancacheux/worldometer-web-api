@@ -16,7 +16,7 @@ exports.GovernmentEconomyService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-const government_economy_entity_1 = require("../entities/government-economy.entity");
+const government_economy_entity_1 = require("../entities/government_economy.entity");
 let GovernmentEconomyService = class GovernmentEconomyService {
     constructor(governmentEconomyRepository) {
         this.governmentEconomyRepository = governmentEconomyRepository;
@@ -47,4 +47,4 @@ GovernmentEconomyService = __decorate([
     __metadata("design:paramtypes", [typeorm_2.Repository])
 ], GovernmentEconomyService);
 exports.GovernmentEconomyService = GovernmentEconomyService;
-//# sourceMappingURL=government-economy.service.js.map
+//# sourceMappingURL=government_economy.service.js.map

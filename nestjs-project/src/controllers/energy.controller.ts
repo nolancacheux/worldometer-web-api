@@ -7,7 +7,7 @@ export class EnergyController {
   constructor(private readonly energyService: EnergyService) {}
 
   @Get()
-  async getEnergyData(): Promise<Energy> {
-    return this.energyService.getLatestEnergyData();
+  async getEnergyData(): Promise<Energy[]> {
+    return this.energyService.findAll();
   }
 }

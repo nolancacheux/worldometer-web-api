@@ -9,56 +9,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SocietyMedia = void 0;
+exports.GovernmentEconomy = void 0;
 const typeorm_1 = require("typeorm");
-let SocietyMedia = class SocietyMedia {
+let GovernmentEconomy = class GovernmentEconomy {
 };
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ type: 'datetime', primary: true }),
     __metadata("design:type", Date)
-], SocietyMedia.prototype, "created_at", void 0);
+], GovernmentEconomy.prototype, "created_at", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], SocietyMedia.prototype, "new_books_published_this_year", void 0);
+], GovernmentEconomy.prototype, "global_health_spending_today", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], SocietyMedia.prototype, "newspaper_copies_printed_today", void 0);
+], GovernmentEconomy.prototype, "global_education_spending_today", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], SocietyMedia.prototype, "tvs_sold_today", void 0);
+], GovernmentEconomy.prototype, "global_military_spending_today", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], SocietyMedia.prototype, "mobile_phones_sold_today", void 0);
+], GovernmentEconomy.prototype, "cars_produced_this_year", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], SocietyMedia.prototype, "video_games_spending_today", void 0);
+], GovernmentEconomy.prototype, "bicycles_produced_this_year", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], SocietyMedia.prototype, "internet_users_in_the_world", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], SocietyMedia.prototype, "emails_sent_today", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], SocietyMedia.prototype, "blog_posts_written_today", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], SocietyMedia.prototype, "tweets_sent_today", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], SocietyMedia.prototype, "google_searches_today", void 0);
-SocietyMedia = __decorate([
-    (0, typeorm_1.Entity)('society-media')
-], SocietyMedia);
-exports.SocietyMedia = SocietyMedia;
-//# sourceMappingURL=society-media.entity.js.map
+], GovernmentEconomy.prototype, "computers_sold_this_year", void 0);
+GovernmentEconomy = __decorate([
+    (0, typeorm_1.Entity)('government_economy')
+], GovernmentEconomy);
+exports.GovernmentEconomy = GovernmentEconomy;
+//# sourceMappingURL=government_economy.entity.js.map

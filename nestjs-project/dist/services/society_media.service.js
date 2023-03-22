@@ -16,7 +16,7 @@ exports.SocietyMediaService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-const society_media_entity_1 = require("../entities/society-media.entity");
+const society_media_entity_1 = require("../entities/society_media.entity");
 let SocietyMediaService = class SocietyMediaService {
     constructor(societyMediaRepository) {
         this.societyMediaRepository = societyMediaRepository;
@@ -47,4 +47,4 @@ SocietyMediaService = __decorate([
     __metadata("design:paramtypes", [typeorm_2.Repository])
 ], SocietyMediaService);
 exports.SocietyMediaService = SocietyMediaService;
-//# sourceMappingURL=society-media.service.js.map
+//# sourceMappingURL=society_media.service.js.map

@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS worldometers;
+
 CREATE DATABASE worldometers;
 
 USE worldometers;

@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { GovernmentEconomy } from '../entities/government-economy.entity';
+import { GovernmentEconomy } from '../entities/government_economy.entity';
 export declare class GovernmentEconomyService {
     private readonly governmentEconomyRepository;
     constructor(governmentEconomyRepository: Repository<GovernmentEconomy>);

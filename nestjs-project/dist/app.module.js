@@ -10,29 +10,30 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const population_entity_1 = require("./entities/population.entity");
-const government_economy_entity_1 = require("./entities/government-economy.entity");
-const society_media_entity_1 = require("./entities/society-media.entity");
+const government_economy_entity_1 = require("./entities/government_economy.entity");
+const society_media_entity_1 = require("./entities/society_media.entity");
 const environment_entity_1 = require("./entities/environment.entity");
 const food_entity_1 = require("./entities/food.entity");
 const water_entity_1 = require("./entities/water.entity");
 const energy_entity_1 = require("./entities/energy.entity");
 const health_entity_1 = require("./entities/health.entity");
 const population_controller_1 = require("./controllers/population.controller");
-const government_economy_controller_1 = require("./controllers/government-economy.controller");
-const society_media_controller_1 = require("./controllers/society-media.controller");
+const government_economy_controller_1 = require("./controllers/government_economy.controller");
+const society_media_controller_1 = require("./controllers/society_media.controller");
 const environment_controller_1 = require("./controllers/environment.controller");
 const food_controller_1 = require("./controllers/food.controller");
 const water_controller_1 = require("./controllers/water.controller");
 const energy_controller_1 = require("./controllers/energy.controller");
 const health_controller_1 = require("./controllers/health.controller");
 const population_service_1 = require("./services/population.service");
-const government_economy_service_1 = require("./services/government-economy.service");
-const society_media_service_1 = require("./services/society-media.service");
+const government_economy_service_1 = require("./services/government_economy.service");
+const society_media_service_1 = require("./services/society_media.service");
 const environment_service_1 = require("./services/environment.service");
 const food_service_1 = require("./services/food.service");
 const water_service_1 = require("./services/water.service");
 const energy_service_1 = require("./services/energy.service");
 const health_service_1 = require("./services/health.service");
+const data_insertion_service_1 = require("./services/data_insertion.service");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -87,6 +88,7 @@ AppModule = __decorate([
             water_service_1.WaterService,
             energy_service_1.EnergyService,
             health_service_1.HealthService,
+            data_insertion_service_1.DataInsertionService,
         ],
     })
 ], AppModule);

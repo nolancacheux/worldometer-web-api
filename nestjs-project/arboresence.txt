@@ -20,6 +20,8 @@
     - energy.entity.ts
     - health.entity.ts
   - services/
+    - data_insertion.service.ts
+    - worldometer_data.py
     - population.service.ts
     - government-economy.service.ts
     - society-media.service.ts

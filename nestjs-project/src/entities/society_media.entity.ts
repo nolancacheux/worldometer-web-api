@@ -1,6 +1,6 @@
 import { Entity, Column, CreateDateColumn } from 'typeorm';
 
-@Entity('society-media')
+@Entity('society_media')
 export class SocietyMedia {
     @CreateDateColumn({ type: 'datetime', primary: true })
     created_at: Date;

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { SocietyMedia } from '../entities/society-media.entity';
+import { SocietyMedia } from '../entities/society_media.entity';
 
 @Injectable()
 export class SocietyMediaService {

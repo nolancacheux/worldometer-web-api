@@ -9,15 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SocietyMediaController = void 0;
+exports.GovernmentEconomyController = void 0;
 const common_1 = require("@nestjs/common");
-const society_media_service_1 = require("../services/society-media.service");
-let SocietyMediaController = class SocietyMediaController {
-    constructor(societyMediaService) {
-        this.societyMediaService = societyMediaService;
+const government_economy_service_1 = require("../services/government_economy.service");
+let GovernmentEconomyController = class GovernmentEconomyController {
+    constructor(governmentEconomyService) {
+        this.governmentEconomyService = governmentEconomyService;
     }
-    async getSocietyMediaData() {
-        return this.societyMediaService.getLatestSocietyMediaData();
+    async getGovernmentEconomyData() {
+        return this.governmentEconomyService.getLatestGovernmentEconomyData();
     }
 };
 __decorate([
@@ -25,10 +25,10 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], SocietyMediaController.prototype, "getSocietyMediaData", null);
-SocietyMediaController = __decorate([
-    (0, common_1.Controller)('society-media'),
-    __metadata("design:paramtypes", [society_media_service_1.SocietyMediaService])
-], SocietyMediaController);
-exports.SocietyMediaController = SocietyMediaController;
-//# sourceMappingURL=society-media.controller.js.map
+], GovernmentEconomyController.prototype, "getGovernmentEconomyData", null);
+GovernmentEconomyController = __decorate([
+    (0, common_1.Controller)('government-economy'),
+    __metadata("design:paramtypes", [government_economy_service_1.GovernmentEconomyService])
+], GovernmentEconomyController);
+exports.GovernmentEconomyController = GovernmentEconomyController;
+//# sourceMappingURL=government_economy.controller.js.map
