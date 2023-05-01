@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Chart from 'chart.js/auto';
+import { useEffect } from 'react';
+import { useRef } from 'react';
 
 
 const DonutChart = ({ births_this_year, deaths_this_year }) => {
@@ -39,6 +41,42 @@ const DonutChart = ({ births_this_year, deaths_this_year }) => {
         <div>
             <canvas id="myChart" ref={chartRef} />
         </div>
+    );
+};
+
+const PieChart = ({data1, data2, data3}) => {
+    const chartContainer = useRef(null);
+  
+    useEffect(() => {
+      if (chartContainer && chartContainer.current) {
+        const myChart = new Chart(chartContainer.current, {
+          type: 'pie',
+          data: {
+            labels: ['Growth Today', 'Deaths Today', 'Born Today'],
+            datasets: [
+              {
+                backgroundColor: ['#FFD670', '#EAC4D5', '#81D2C7'],
+                data: [data1, data2, data3]
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'top',
+              }
+            }
+          }
+        });
+        return () => myChart.destroy();
+      }
+    }, []);
+  
+    return (
+      <div>
+        <canvas ref={chartContainer} />
+      </div>
     );
 };
 
@@ -144,6 +182,8 @@ class MultiSeriesPieChart extends React.Component {
     }
 }
 
+
+
 const App = () => {
     const data = {
         created_at: '2023-04-07T07:06:13.000Z',
@@ -177,6 +217,12 @@ const App = () => {
                 births_this_year={data.births_this_year}
                 deaths_this_year={data.deaths_this_year}
                 growth_this_year={data.growth_this_year}
+            />
+            <h1>Statistique Population</h1>
+            <PieChart
+                data1={data.births_today}
+                data2={data.deaths_today}
+                data3={data.growth_today}
             />
         </div>
     );
