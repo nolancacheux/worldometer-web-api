@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Chart from 'chart.js/auto';
 import { useEffect } from 'react';
 import { useRef } from 'react';
+import './style.css'
 
 
 const DonutChart = ({ births_this_year, deaths_this_year }) => {
@@ -281,18 +282,18 @@ const App = () => {
     const Data = [
         {
           created_at: "2022-05-01",
-          deaths_today: 10,
-          births_today: 5
+          deaths_today: 10000,
+          births_today: 5000
         },
         {
           created_at: "2022-05-02",
-          deaths_today: 15,
-          births_today: 7
+          deaths_today: 15000,
+          births_today: 700
         },
         {
           created_at: "2022-05-03",
-          deaths_today: 8,
-          births_today: 9
+          deaths_today: 80000,
+          births_today: 90000
         },
     ]
     
