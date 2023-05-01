@@ -12,6 +12,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const dataInsertionService = app.get(DataInsertionService);
   startDataInsertion(dataInsertionService);
-  await app.listen(3000);
+  await app.listen(3001);
 }
 bootstrap();
