@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Chart from 'chart.js/auto';
 
-//const title = React.createElement("div", {}, "sortie");
-//const rootElement = React.createElement('div', { id: 'root' }, 'Contenu de la balise');
+
 const DonutChart = ({ births_this_year, deaths_this_year }) => {
     const chartRef = React.useRef();
 
