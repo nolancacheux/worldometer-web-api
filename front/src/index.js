@@ -6,7 +6,7 @@ import { useRef } from 'react';
 import './style.css'
 
 
-const DonutChart = ({ births_this_year, deaths_this_year }) => {
+const DonutChart = ({ births_this_year, deaths_this_year }) => {  
     const chartRef = React.useRef();
 
     React.useEffect(() => {
@@ -39,7 +39,7 @@ const DonutChart = ({ births_this_year, deaths_this_year }) => {
     }, []);
 
     return (
-        <div>
+        <div class='DonutChart'>
             <canvas id="myChart" ref={chartRef} />
         </div>
     );
@@ -75,7 +75,7 @@ const PieChart = ({data1, data2, data3}) => {
     }, [data1, data2, data3]);
   
     return (
-      <div>
+      <div class='PieChart'>
         <canvas ref={chartContainer} />
       </div>
     );
@@ -106,7 +106,7 @@ const PolarAreaChart = ({ data1, data2, data3 }) => {
     }, [data1, data2, data3]);
   
     return (
-        <div>
+        <div class='PolarAreaChart'>
             <canvas ref={chartContainer} />
         </div>
     );
@@ -204,15 +204,12 @@ class MultiSeriesPieChart extends React.Component {
 
     render() {
         return (
-            <div>
-                <canvas
-                    id="myChart"
-                    ref={this.chartRef}
-                />
+            <div class='MultiSeriesPieChart'>
+                <canvas ref={this.chartRef} />
             </div>
         )
     }
-}
+};
 
 const BarChartBorderRadius = ({ data }) => {
     const chartContainer = useRef(null);
@@ -260,7 +257,7 @@ const BarChartBorderRadius = ({ data }) => {
     }, [data]);
   
     return (
-      <div>
+      <div class='BarChartBorderRadius'>
         <canvas ref={chartContainer} />
       </div>
     );
