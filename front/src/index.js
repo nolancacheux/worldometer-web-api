@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Chart from 'chart.js/auto';
 import { useEffect } from 'react';
 import { useRef } from 'react';
+import { PolarArea } from "react-chartjs-2";
 
 
 const DonutChart = ({ births_this_year, deaths_this_year }) => {
@@ -71,12 +72,43 @@ const PieChart = ({data1, data2, data3}) => {
         });
         return () => myChart.destroy();
       }
-    }, []);
+    }, [data1, data2, data3]);
   
     return (
       <div>
         <canvas ref={chartContainer} />
       </div>
+    );
+};
+
+const PolarAreaChart = ({ data1, data2, data3 }) => {
+    const chartContainer = useRef(null);
+  
+    useEffect(() => {
+      if (chartContainer && chartContainer.current) {
+        const myChart = new Chart(chartContainer.current, {
+            type: 'polarArea',
+          data: {
+            labels: ['Value 1', 'Value 2', 'Value 3'],
+            datasets: [
+              {
+                data: [data1, data2, data3],
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+          },
+        });
+        return () => myChart.destroy();
+      }
+    }, [data1, data2, data3]);
+  
+    return (
+        <div>
+            <canvas ref={chartContainer} />
+        </div>
     );
 };
 
@@ -223,6 +255,12 @@ const App = () => {
                 data1={data.births_today}
                 data2={data.deaths_today}
                 data3={data.growth_today}
+            />
+            <h1>Statistique Population</h1>
+            <PolarAreaChart
+                data1={1}
+                data2={2}
+                data3={3}
             />
         </div>
     );
