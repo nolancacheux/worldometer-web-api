@@ -6,7 +6,7 @@ import { useRef } from 'react';
 import './style.css'
 
 
-const DonutChart = ({ births_this_year, deaths_this_year }) => {  
+const DonutChart = ({nameValue1, nameValue2, value1, value2 }) => {  
     const chartRef = React.useRef();
 
     React.useEffect(() => {
@@ -14,11 +14,11 @@ const DonutChart = ({ births_this_year, deaths_this_year }) => {
         new Chart(myChartRef, {
             type: 'doughnut',
             data: {
-                labels: ['Naissances', 'Morts'],
+                labels: [nameValue1, nameValue2],
                 datasets: [
                     {
                         label: 'Population',
-                        data: [births_this_year, deaths_this_year],
+                        data: [value1, value2],
                         backgroundColor: ['#36a2eb', '#ff6384'],
                     },
                 ],
@@ -45,7 +45,7 @@ const DonutChart = ({ births_this_year, deaths_this_year }) => {
     );
 };
 
-const PieChart = ({data1, data2, data3}) => {
+const PieChart = ({nameData1, nameData2, nameData3, data1, data2, data3}) => {
     const chartContainer = useRef(null);
   
     useEffect(() => {
@@ -53,7 +53,7 @@ const PieChart = ({data1, data2, data3}) => {
         const myChart = new Chart(chartContainer.current, {
           type: 'pie',
           data: {
-            labels: ['Growth Today', 'Deaths Today', 'Born Today'],
+            labels: [nameData1, nameData2, nameData3],
             datasets: [
               {
                 backgroundColor: ['#FFD670', '#EAC4D5', '#81D2C7'],
@@ -79,6 +79,42 @@ const PieChart = ({data1, data2, data3}) => {
         <canvas ref={chartContainer} />
       </div>
     );
+};
+
+const PieChart5 = ({nameData1, nameData2, nameData3, nameData4, nameData5, data1, data2, data3, data4, data5}) => {
+  const chartContainer = useRef(null);
+
+  useEffect(() => {
+    if (chartContainer && chartContainer.current) {
+      const myChart = new Chart(chartContainer.current, {
+        type: 'pie',
+        data: {
+          labels: [nameData1, nameData2, nameData3, nameData4, nameData5],
+          datasets: [
+            {
+              backgroundColor: ['#FFD670', '#EAC4D5', '#81D2C7', '#C5D86D', '#A7ACD9'],
+              data: [data1, data2, data3, data4, data5]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            }
+          }
+        }
+      });
+      return () => myChart.destroy();
+    }
+  }, [data1, data2, data3]);
+
+  return (
+    <div class='PieChart'>
+      <canvas ref={chartContainer} />
+    </div>
+  );
 };
 
 const PolarAreaChart = ({ data1, data2, data3 }) => {
@@ -263,7 +299,6 @@ const BarChartBorderRadius = ({ data }) => {
     );
 };
 
-
 const App = () => {
     const data = {
         created_at: '2023-04-07T07:06:13.000Z',
@@ -275,6 +310,73 @@ const App = () => {
         growth_this_year: 14423531,
         growth_today: 128340,
     };
+    const energy = 
+      {
+        created_at:"2023-04-07T07:06:13.000Z",
+        energy_used_today:160252695251,
+        non_renewable_sources_used_today:131750127340,
+        renewable_sources_used_today:28502411017,
+        solar_energy_reaching_earth_today:17309196232584,
+        oil_pumped_today:80378520,
+        oil_remaining:1634088999894,
+        days_to_the_end_of_oil:50,
+        gas_remaining:196159000000,
+        days_to_the_end_of_gas:60,
+        coal_remaining:1086980000000,
+        days_to_the_end_of_coal:142
+      };
+    const environment = {
+        created_at:"2023-04-07T07:06:13.000Z",
+        forest_area_lost_this_year:120000,
+        arable_land_lost_this_year:183000,
+        co2_emissions_this_year:32520979240,
+        desertification_this_year:28474000,
+        toxic_chemicals_released_this_year:2000000000
+    };
+      const health = {
+        created_at:"2023-04-07T07:06:13.000Z",
+        deaths_of_children_under_five_this_year:59046634,
+        abortions_this_year:7681430,
+        maternal_deaths_this_year:4062620,
+        people_infected_with_hiv_aids:2144420,
+        deaths_caused_by_hiv_aids_this_year:4010000,
+        deaths_caused_by_cancer_this_year:1249093,
+        deaths_caused_by_malaria_this_year:9391554,
+        cigarettes_smoked_today:389102,
+        deaths_caused_by_smoking_this_year:190273,
+        deaths_caused_by_alcohol_this_year:5797,
+        suicides_this_year:2928558,
+        money_spent_on_illegal_drugs_this_year:1357540,
+        deaths_caused_by_road_traffic_accidents_this_year:201541
+      };
+      const water = {
+        created_at:"2023-04-07T07:06:13.000Z",
+        water_used_this_year:413999000000000,
+        water_related_deaths_this_year:1130000,
+        people_without_access_to_clean_water:783000000
+      };
+      const media = {
+        created_at:"2023-04-07T07:06:13.000Z",
+        new_books_published_this_year:2883301,
+        newspaper_copies_printed_today:24725124,
+        tvs_sold_today:39509,
+        mobile_phones_sold_today:2699522,
+        video_games_spending_today:1200000000,
+        internet_users_in_the_world:4091406844,
+        emails_sent_today:333140000000,
+        blog_posts_written_today:847998,
+        tweets_sent_today:74834234,
+        google_searches_today:6000000000
+      };
+      const gouvernmentEconomy ={
+        created_at:"2023-04-07T07:06:13.000Z",
+        global_health_spending_today:9333000000,
+        global_education_spending_today:4960000000,
+        global_military_spending_today:1915000000,
+        cars_produced_this_year:78902622,
+        bicycles_produced_this_year:133877527,
+        computers_sold_this_year:353182016
+      };
 
     const Data = [
         {
@@ -292,22 +394,27 @@ const App = () => {
           deaths_today: 80000,
           births_today: 90000
         },
-    ]
+    ];
     
 
     return (
         <div>
-            <h1>Statistique de la population cette année</h1>
+          <h1>Stats Population</h1>
+            <h2>Statistique de la population cette année</h2>
             <DonutChart
-                births_this_year={data.births_this_year}
-                deaths_this_year={data.deaths_this_year}
+                nameValue1={'Naissance'}
+                nameValue2={'Décès'}
+                value1={data.births_this_year}
+                value2={data.deaths_this_year}
             />
-            <h1>Statistique de la population aujourd'hui</h1>
+            <h2>Statistique de la population aujourd'hui</h2>
             <DonutChart
-                births_this_year={data.births_today}
-                deaths_this_year={data.deaths_today}
+                nameValue1={'Naissance'}
+                nameValue2={'Décès'}
+                value1={data.births_today}
+                value2={data.deaths_today}
             />
-            <h1>Statistiques Population</h1>
+            <h2>Statistiques Population</h2>
             <MultiSeriesPieChart
                 current_population={data.current_population}
                 births_today={data.births_today}
@@ -317,22 +424,65 @@ const App = () => {
                 deaths_this_year={data.deaths_this_year}
                 growth_this_year={data.growth_this_year}
             />
-            <h1>Statistique Population</h1>
+            <h2>Statistique Population</h2>
             <PieChart
+                nameData1={'Naissances aujourd\'hui'}
+                nameData2={'Décès aujourd\'hui'}
+                nameData3={'Croissance aujourd\'hui'}
                 data1={data.births_today}
                 data2={data.deaths_today}
                 data3={data.growth_today}
             />
-            <h1>Statistique Population</h1>
+            <h2>Statistique Population</h2>
             <PolarAreaChart
                 data1={1}
                 data2={2}
                 data3={3}
             />
-            <h1>Statistique Population</h1>
+            <h2>Statistique Population</h2>
             <BarChartBorderRadius 
                 data={Data}
             />
+          <h1>Stats energy</h1>
+            <h2>Energy renew vs non_renew</h2>
+            <DonutChart
+              nameValue1={'energies_renouvelables'}
+              nameValue2={'energies_non_renouvelables'}
+              value1={energy.renewable_sources_used_today}
+              value2={energy.non_renewable_sources_used_today}
+            />
+            <h2>Energy</h2>
+            <PieChart
+              nameData1={'pétrol restant'}
+              nameData2={'gaz restant'}
+              nameData3={'charbon restant'}
+              data1={energy.oil_remaining}
+              data2={energy.gas_remaining}
+              data3={energy.coal_remaining}
+            />
+          <h1>Stats environment</h1>
+            <h2>Flemme pour les noms</h2>
+            <PieChart5
+              nameData1={'forest_area_lost_this_year'}
+              nameData2={'arable_land_lost_this_year'}
+              nameData3={'co2_emissions_this_year'}
+              nameData4={'desertification_this_year'}
+              nameData5={'toxic_chemicals_released_this_year'}
+              data1={environment.forest_area_lost_this_year}
+              data2={environment.arable_land_lost_this_year}
+              data3={environment.co2_emissions_this_year}
+              data4={environment.desertification_this_year}
+              data5={environment.toxic_chemicals_released_this_year}
+            />
+          <h1>Stats water</h1>
+            <h2>Flemme</h2>
+            <DonutChart
+              nameValue1={'No water access'}
+              nameValue2={'Death'}
+              value1={water.people_without_access_to_clean_water}
+              value2={water.water_related_deaths_this_year}
+            />
+
         </div>
     );
 };

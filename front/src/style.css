@@ -7,7 +7,7 @@ body {
 div {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     background-color: #f5f5f5;
     padding: 20px;
