@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Chart from 'chart.js';
+import Chart from 'chart.js/auto';
 
 export class MultiSeriesPieChart extends Component {
   chartRef = React.createRef();
