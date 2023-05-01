@@ -33,7 +33,7 @@ import { DataInsertionService } from './services/data_insertion.service';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'root',
+      password: 'azertyuiop',
       database: 'worldometers',
       entities: [
         Population,

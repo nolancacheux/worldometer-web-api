@@ -44,7 +44,7 @@ AppModule = __decorate([
                 host: 'localhost',
                 port: 3306,
                 username: 'root',
-                password: 'root',
+                password: 'azertyuiop',
                 database: 'worldometers',
                 entities: [
                     population_entity_1.Population,
