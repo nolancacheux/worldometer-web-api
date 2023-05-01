@@ -81,16 +81,16 @@ export class MultiSeriesPieChart extends Component {
         },
       },
     };
-    if (typeof this.chart !== 'undefined') {
-      this.chart.destroy();
+    if (window.myChart !== undefined) {
+      window.myChart.destroy();
     }
-    this.chart = new Chart(chartRef, config);
+    window.myChart = new Chart(chartRef,config);
   }
 
   render() {
     return (
       <div>
-        <canvas id="myChart" ref={this.chartRef} />
+        <canvas ref={this.chartRef} />
       </div>
     );
   }

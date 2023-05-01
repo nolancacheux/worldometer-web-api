@@ -35,7 +35,7 @@ export function DonutChart ({ births_this_year, deaths_this_year }) {
 
     return (
         <div>
-            <canvas id="myChart" ref={chartRef} />
+            <canvas ref={chartRef} />
         </div>
     );
 };

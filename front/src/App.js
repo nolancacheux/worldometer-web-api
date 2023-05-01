@@ -22,6 +22,7 @@ function App() {
         births_this_year={data.births_this_year}
         deaths_this_year={data.deaths_this_year}
       />
+
       <h1>Statistique de la population aujourd'hui</h1>
       <DonutChart
         births_this_year={data.births_today}
