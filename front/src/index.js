@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import Chart from 'chart.js/auto';
 import { useEffect } from 'react';
 import { useRef } from 'react';
-import { PolarArea } from "react-chartjs-2";
 
 
 const DonutChart = ({ births_this_year, deaths_this_year }) => {
@@ -214,6 +213,57 @@ class MultiSeriesPieChart extends React.Component {
     }
 }
 
+const BarChartBorderRadius = ({ data }) => {
+    const chartContainer = useRef(null);
+  
+    useEffect(() => {
+      if (chartContainer && chartContainer.current) {
+        const chartData = {
+          labels: data.map((item) => item.created_at),
+          datasets: [
+            {
+              label: 'Deaths Today',
+              data: data.map((item) => item.deaths_today),
+              backgroundColor: 'rgba(255, 99, 132, 0.5)',
+              borderColor: 'rgb(255, 99, 132)',
+              borderWidth: 1,
+              borderRadius: 10,
+            },
+            {
+              label: 'Births Today',
+              data: data.map((item) => item.births_today),
+              backgroundColor: 'rgba(54, 162, 235, 0.5)',
+              borderColor: 'rgb(54, 162, 235)',
+              borderWidth: 1,
+              borderRadius: 10,
+            },
+          ],
+        };
+  
+        const chartOptions = {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        };
+  
+        const myChart = new Chart(chartContainer.current, {
+          type: 'bar',
+          data: chartData,
+          options: chartOptions,
+        });
+  
+        return () => myChart.destroy();
+      }
+    }, [data]);
+  
+    return (
+      <div>
+        <canvas ref={chartContainer} />
+      </div>
+    );
+};
 
 
 const App = () => {
@@ -227,6 +277,25 @@ const App = () => {
         growth_this_year: 14423531,
         growth_today: 128340,
     };
+
+    const Data = [
+        {
+          created_at: "2022-05-01",
+          deaths_today: 10,
+          births_today: 5
+        },
+        {
+          created_at: "2022-05-02",
+          deaths_today: 15,
+          births_today: 7
+        },
+        {
+          created_at: "2022-05-03",
+          deaths_today: 8,
+          births_today: 9
+        },
+    ]
+    
 
     return (
         <div>
@@ -261,6 +330,10 @@ const App = () => {
                 data1={1}
                 data2={2}
                 data3={3}
+            />
+            <h1>Statistique Population</h1>
+            <BarChartBorderRadius 
+                data={Data}
             />
         </div>
     );
