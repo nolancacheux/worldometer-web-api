@@ -32,6 +32,9 @@ h1 {
     margin-bottom: 20px;
     width : 100%;
 }
+h1#title{
+    font-size: 36pt;
+}
 
 h2 {
     justify-content: center;

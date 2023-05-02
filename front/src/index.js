@@ -375,16 +375,7 @@ const App = () => {
         const response = await fetch('http://localhost:3001/population');
         const json = await response.json();
         population_stat = json;
-        setData({
-          created_at: population_stat.created_at,
-          current_population: population_stat.current_population,
-          births_this_year: population_stat.births_this_year,
-          births_today: population_stat.births_today,
-          deaths_this_year: population_stat.deaths_this_year,
-          deaths_today: population_stat.deaths_today,
-          growth_this_year: population_stat.growth_this_year,
-          growth_today: population_stat.growth_today,
-        })
+        
         console.log('fetch population')
       } catch (error) {
         console.error(error);
@@ -397,22 +388,6 @@ const App = () => {
         energy_stat = json[json.length - 1];
         console.log("energy stat oil", energy.oil_remaining);
         console.log("energy stat gas", energy.gas_remaining);
-
-        
-        setEnergy({
-          created_at: energy_stat.created_at,
-          energy_used_today:energy_stat.energy_used_today,
-          non_renewable_sources_used_today:energy_stat.non_renewable_sources_used_today,
-          renewable_sources_used_today:energy_stat.renewable_sources_used_today,
-          solar_energy_reaching_earth_today:energy_stat.solar_energy_reaching_earth_today,
-          oil_pumped_today:energy_stat.oil_pumped_today,
-          oil_remaining:energy_stat.oil_remaining,
-          days_to_the_end_of_oil:energy_stat.days_to_the_end_of_oil,
-          gas_remaining:energy_stat.gas_remaining,
-          days_to_the_end_of_gas:energy_stat.days_to_the_end_of_gas,
-          coal_remaining:energy_stat.coal_remaining,
-          days_to_the_end_of_coal:energy_stat.days_to_the_end_of_coal
-        }) 
         console.log('fetch energy')
        
       } catch (error) {
@@ -425,14 +400,7 @@ const App = () => {
         const json = await response.json();
         environment_stat = json;
         //console.log("energy stat", energy_stat);
-        setEnvironment({
-          created_at:environment_stat.created_at,
-          forest_area_lost_this_year:environment_stat.forest_area_lost_this_year,
-          arable_land_lost_this_year:environment_stat.arable_land_lost_this_year,
-          co2_emissions_this_year:environment_stat.co2_emissions_this_year,
-          desertification_this_year:environment_stat.desertification_this_year,
-          toxic_chemicals_released_this_year:environment_stat.toxic_chemicals_released_this_year,
-        }) 
+        
         console.log('fetch environment')
        
       } catch (error) {
@@ -445,12 +413,7 @@ const App = () => {
         const json = await response.json();
         water_stat = json;
         //console.log("energy stat", energy_stat);
-        setWater({
-          created_at:water_stat.created_at,
-          water_used_this_year:water_stat.water_used_this_year,
-          water_related_deaths_this_year:water_stat.water_related_deaths_this_year,
-          people_without_access_to_clean_water:water_stat.people_without_access_to_clean_water
-        }) 
+        
         console.log('fetch water')
        
       } catch (error) {
@@ -463,22 +426,7 @@ const App = () => {
         const json = await response.json();
         health_stat = json
         //console.log("energy stat", energy_stat);
-        setHealth({
-          created_at:health_stat.created_at,
-          deaths_of_children_under_five_this_year:health_stat.deaths_of_children_under_five_this_year,
-          abortions_this_year:health_stat.abortions_this_year,
-          maternal_deaths_this_year:health_stat.maternal_deaths_this_year,
-          people_infected_with_hiv_aids:health_stat.people_infected_with_hiv_aids,
-          deaths_caused_by_hiv_aids_this_year:health_stat.deaths_caused_by_hiv_aids_this_year,
-          deaths_caused_by_cancer_this_year:health_stat.deaths_caused_by_cancer_this_year,
-          deaths_caused_by_malaria_this_year:health_stat.deaths_caused_by_malaria_this_year,
-          cigarettes_smoked_today:health_stat.cigarettes_smoked_today,
-          deaths_caused_by_smoking_this_year:health_stat.deaths_caused_by_smoking_this_year,
-          deaths_caused_by_alcohol_this_year:health_stat.deaths_caused_by_alcohol_this_year,
-          suicides_this_year:health_stat.suicides_this_year,
-          money_spent_on_illegal_drugs_this_year:health_stat.money_spent_on_illegal_drugs_this_year,
-          deaths_caused_by_road_traffic_accidents_this_year:health_stat.deaths_caused_by_road_traffic_accidents_this_year
-        }) 
+        
         console.log('fetch health')
       
       } catch (error) {
@@ -491,21 +439,77 @@ const App = () => {
         const json = await response.json();
         eco = json
         //console.log("energy stat", energy_stat);
-        setGouvernmentEconomy({
-          created_at:eco.created_at,
-          global_health_spending_today:eco.global_health_spending_today,
-          global_education_spending_today:eco.global_education_spending_today,
-          global_military_spending_today:eco.global_military_spending_today,
-          cars_produced_this_year:eco.cars_produced_this_year,
-          bicycles_produced_this_year:eco.bicycles_produced_this_year,
-          computers_sold_this_year:eco.computers_sold_this_year
-        }) 
+        
         console.log('fetch health')
       
       } catch (error) {
         console.error(error);
       }
       // #endregion
+
+      setData({
+        created_at: population_stat.created_at,
+        current_population: population_stat.current_population,
+        births_this_year: population_stat.births_this_year,
+        births_today: population_stat.births_today,
+        deaths_this_year: population_stat.deaths_this_year,
+        deaths_today: population_stat.deaths_today,
+        growth_this_year: population_stat.growth_this_year,
+        growth_today: population_stat.growth_today,
+      })
+      setEnergy({
+        created_at: energy_stat.created_at,
+        energy_used_today:energy_stat.energy_used_today,
+        non_renewable_sources_used_today:energy_stat.non_renewable_sources_used_today,
+        renewable_sources_used_today:energy_stat.renewable_sources_used_today,
+        solar_energy_reaching_earth_today:energy_stat.solar_energy_reaching_earth_today,
+        oil_pumped_today:energy_stat.oil_pumped_today,
+        oil_remaining:energy_stat.oil_remaining,
+        days_to_the_end_of_oil:energy_stat.days_to_the_end_of_oil,
+        gas_remaining:energy_stat.gas_remaining,
+        days_to_the_end_of_gas:energy_stat.days_to_the_end_of_gas,
+        coal_remaining:energy_stat.coal_remaining,
+        days_to_the_end_of_coal:energy_stat.days_to_the_end_of_coal
+      }) 
+      setEnvironment({
+        created_at:environment_stat.created_at,
+        forest_area_lost_this_year:environment_stat.forest_area_lost_this_year,
+        arable_land_lost_this_year:environment_stat.arable_land_lost_this_year,
+        co2_emissions_this_year:environment_stat.co2_emissions_this_year,
+        desertification_this_year:environment_stat.desertification_this_year,
+        toxic_chemicals_released_this_year:environment_stat.toxic_chemicals_released_this_year,
+      }) 
+      setWater({
+        created_at:water_stat.created_at,
+        water_used_this_year:water_stat.water_used_this_year,
+        water_related_deaths_this_year:water_stat.water_related_deaths_this_year,
+        people_without_access_to_clean_water:water_stat.people_without_access_to_clean_water
+      }) 
+      setHealth({
+        created_at:health_stat.created_at,
+        deaths_of_children_under_five_this_year:health_stat.deaths_of_children_under_five_this_year,
+        abortions_this_year:health_stat.abortions_this_year,
+        maternal_deaths_this_year:health_stat.maternal_deaths_this_year,
+        people_infected_with_hiv_aids:health_stat.people_infected_with_hiv_aids,
+        deaths_caused_by_hiv_aids_this_year:health_stat.deaths_caused_by_hiv_aids_this_year,
+        deaths_caused_by_cancer_this_year:health_stat.deaths_caused_by_cancer_this_year,
+        deaths_caused_by_malaria_this_year:health_stat.deaths_caused_by_malaria_this_year,
+        cigarettes_smoked_today:health_stat.cigarettes_smoked_today,
+        deaths_caused_by_smoking_this_year:health_stat.deaths_caused_by_smoking_this_year,
+        deaths_caused_by_alcohol_this_year:health_stat.deaths_caused_by_alcohol_this_year,
+        suicides_this_year:health_stat.suicides_this_year,
+        money_spent_on_illegal_drugs_this_year:health_stat.money_spent_on_illegal_drugs_this_year,
+        deaths_caused_by_road_traffic_accidents_this_year:health_stat.deaths_caused_by_road_traffic_accidents_this_year
+      }) 
+      setGouvernmentEconomy({
+        created_at:eco.created_at,
+        global_health_spending_today:eco.global_health_spending_today,
+        global_education_spending_today:eco.global_education_spending_today,
+        global_military_spending_today:eco.global_military_spending_today,
+        cars_produced_this_year:eco.cars_produced_this_year,
+        bicycles_produced_this_year:eco.bicycles_produced_this_year,
+        computers_sold_this_year:eco.computers_sold_this_year
+      }) 
     }
 
     useEffect(()=>{    fetchData();
@@ -613,7 +617,7 @@ const App = () => {
 
     return (
         <div>
-          <h1>Worldometer data visualisation</h1>
+          <h1 id='title'>Worldometer data visualisation</h1>
 
             <h2>Statistique de population</h2>
             <br></br>
