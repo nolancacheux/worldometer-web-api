@@ -268,7 +268,7 @@ class MultiSeriesPieChart extends React.Component {
   }
 };
 
-const BarChartBorderRadius = ({ nameCol1, nameCol2, data }) => {
+const BarChartBorderRadius = ({ nameCol1, nameCol2, nameCol3, nameCol4, nameCol5, nameCol6, data }) => {
     const chartContainer = useRef(null);
   
     useEffect(() => {
@@ -278,7 +278,7 @@ const BarChartBorderRadius = ({ nameCol1, nameCol2, data }) => {
           datasets: [
             {
               label: nameCol1,
-              data: data.map((item) => item.deaths_today),
+              data: data.map((item) => item.deaths_this_year),
               backgroundColor: 'rgba(255, 99, 132, 0.5)',
               borderColor: 'rgb(255, 99, 132)',
               borderWidth: 1,
@@ -286,9 +286,41 @@ const BarChartBorderRadius = ({ nameCol1, nameCol2, data }) => {
             },
             {
               label: nameCol2,
-              data: data.map((item) => item.births_today),
+              data: data.map((item) => item.water),
+              backgroundColor: '#ffce56',
+              borderColor: '#ffce56',
+              borderWidth: 1,
+              borderRadius: 10,
+            },
+            {
+              label: nameCol3,
+              data: data.map((item) => item.alcohol),
               backgroundColor: 'rgba(54, 162, 235, 0.5)',
               borderColor: 'rgb(54, 162, 235)',
+              borderWidth: 1,
+              borderRadius: 10,
+            },
+            {
+              label: nameCol4,
+              data: data.map((item) => item.cancer),
+              backgroundColor: 'rgba(54, 162, 235, 0.5)',
+              borderColor: 'rgb(54, 162, 235)',
+              borderWidth: 1,
+              borderRadius: 10,
+            },
+            {
+              label: nameCol5,
+              data: data.map((item) => item.accident),
+              backgroundColor: '#81d2c7',
+              borderColor: '#81d2c7',
+              borderWidth: 1,
+              borderRadius: 10,
+            },
+            {
+              label: nameCol6,
+              data: data.map((item) => item.smoke),
+              backgroundColor: '#81d2c7',
+              borderColor: '#81d2c7',
               borderWidth: 1,
               borderRadius: 10,
             },
@@ -324,7 +356,8 @@ const App = () => {
     let population_stat;
     let energy_stat;
     let environment_stat;
-
+    let water_stat;
+    let health_stat;
 
 
     const fetchData = async()=> {
@@ -392,6 +425,53 @@ const App = () => {
         console.error(error);
       }
       // #endregion
+      // #region water
+      try {
+        const response = await fetch('http://localhost:3001/water');
+        const json = await response.json();
+        water_stat = json;
+        //console.log("energy stat", energy_stat);
+        setWater({
+          created_at:water_stat.created_at,
+          water_used_this_year:water_stat.water_used_this_year,
+          water_related_deaths_this_year:water_stat.water_related_deaths_this_year,
+          people_without_access_to_clean_water:water_stat.people_without_access_to_clean_water
+        }) 
+        console.log('fetch water')
+       
+      } catch (error) {
+        console.error(error);
+      }
+      // #endregion
+      // #region health
+      try {
+        const response = await fetch('http://localhost:3001/health');
+        const json = await response.json();
+        health_stat = json
+        //console.log("energy stat", energy_stat);
+        setHealth({
+          created_at:health_stat.created_at,
+          deaths_of_children_under_five_this_year:health_stat.deaths_of_children_under_five_this_year,
+          abortions_this_year:health_stat.abortions_this_year,
+          maternal_deaths_this_year:health_stat.maternal_deaths_this_year,
+          people_infected_with_hiv_aids:health_stat.people_infected_with_hiv_aids,
+          deaths_caused_by_hiv_aids_this_year:health_stat.deaths_caused_by_hiv_aids_this_year,
+          deaths_caused_by_cancer_this_year:health_stat.deaths_caused_by_cancer_this_year,
+          deaths_caused_by_malaria_this_year:health_stat.deaths_caused_by_malaria_this_year,
+          cigarettes_smoked_today:health_stat.cigarettes_smoked_today,
+          deaths_caused_by_smoking_this_year:health_stat.deaths_caused_by_smoking_this_year,
+          deaths_caused_by_alcohol_this_year:health_stat.deaths_caused_by_alcohol_this_year,
+          suicides_this_year:health_stat.suicides_this_year,
+          money_spent_on_illegal_drugs_this_year:health_stat.money_spent_on_illegal_drugs_this_year,
+          deaths_caused_by_road_traffic_accidents_this_year:health_stat.deaths_caused_by_road_traffic_accidents_this_year
+        }) 
+        console.log('fetch health')
+      
+      } catch (error) {
+        console.error(error);
+      }
+      // #endregion
+      
     }
 
     useEffect(()=>{    fetchData();
@@ -437,7 +517,7 @@ const App = () => {
         desertification_this_year:4,
         toxic_chemicals_released_this_year:5
     });
-      const health = {
+    const [health, setHealth] = useState({
         created_at:"2023-04-07T07:06:13.000Z",
         deaths_of_children_under_five_this_year:59046634,
         abortions_this_year:7681430,
@@ -452,13 +532,14 @@ const App = () => {
         suicides_this_year:2928558,
         money_spent_on_illegal_drugs_this_year:1357540,
         deaths_caused_by_road_traffic_accidents_this_year:201541
-      };
-      const water = {
+      });
+
+      const [water, setWater] = useState({
         created_at:"2023-04-07T07:06:13.000Z",
-        water_used_this_year:413999000000000,
-        water_related_deaths_this_year:1130000,
-        people_without_access_to_clean_water:783000000
-      };
+        water_used_this_year:2,
+        water_related_deaths_this_year:3,
+        people_without_access_to_clean_water:4
+      });
       const media = {
         created_at:"2023-04-07T07:06:13.000Z",
         new_books_published_this_year:2883301,
@@ -484,34 +565,32 @@ const App = () => {
 
     const Data = [
         {
-          created_at: "2022-05-01",
-          deaths_today: 10000,
-          births_today: 5000
-        },
-        {
-          created_at: "2022-05-02",
-          deaths_today: 15000,
-          births_today: 700
-        },
-        {
-          created_at: "2022-05-03",
-          deaths_today: 80000,
-          births_today: 90000
-        },
+          created_at: "this year",
+          deaths_this_year: data.deaths_this_year,
+          water: water.water_related_deaths_this_year,
+          alcohol:health.deaths_caused_by_alcohol_this_year,
+          cancer: health.deaths_caused_by_alcohol_this_year,
+          accident:health.deaths_caused_by_road_traffic_accidents_this_year,
+          smoke:health.deaths_caused_by_smoking_this_year
+        }
     ];
     
 
     return (
         <div>
-          <h1>Stats Population</h1>
-            <h2>Statistique de la population cette année</h2>
+          <h1>Worldometer data visualisation</h1>
+
+            <h2>Statistique de la population</h2>
+            <br></br>
+
+            <h3>Cette année</h3>
             <DonutChart
                 nameValue1={'Naissance'}
                 nameValue2={'Décès'}
                 value1={data.births_this_year}
                 value2={data.deaths_this_year}
             />
-            <h2>Statistique de la population aujourd'hui</h2>
+            <h3>Aujourd'hui</h3>
             <DonutChart
                 nameValue1={'Naissance'}
                 nameValue2={'Décès'}
@@ -543,12 +622,19 @@ const App = () => {
                 data2={2}
                 data3={3}
             />
-            <h2>Statistique Population</h2>
-            <BarChartBorderRadius 
-                nameCol1={'deaths'}
-                nameCol2={'births'}
+            <h1>Statistiques de mortalité</h1>
+            {/* <h2>Statistique Population</h2> */}
+            {/* <BarChartBorderRadius 
+                nameCol1={'total deaths'}
+                nameCol2={'water'}
+                nameCol3={'alcohol'}
+                nameCol4={'cancer'}
+                nameCol5={'road traffic accident'}
+                nameCol6={'smoking'}
                 data={Data}
-            />
+                // col1={data.deaths_this_year}
+                //col2={water.water_related_deaths_this_year}
+            /> */}
           <h1>Stats energy</h1>
             <h2>Energy renew vs non_renew</h2>
             <DonutChart
@@ -589,6 +675,15 @@ const App = () => {
               value2={water.water_related_deaths_this_year}
             />
 
+
+          <h1>Stats water (this year)</h1>
+            <h2>Death</h2>
+            <DonutChart
+              nameValue1={'water related deaths'}
+              nameValue2={'total Death'}
+              value2={data.deaths_this_year}
+              value1={water.water_related_deaths_this_year}
+            />
         </div>
     );
 };
