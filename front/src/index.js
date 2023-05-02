@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import Chart from 'chart.js/auto';
@@ -7,42 +8,51 @@ import './style.css'
 
 
 const DonutChart = ({nameValue1, nameValue2, value1, value2 }) => {  
-    const chartRef = React.useRef();
+  const chartRef = React.useRef();
+  let myChart = null;
 
-    React.useEffect(() => {
-        const myChartRef = chartRef.current.getContext('2d');
-        new Chart(myChartRef, {
-            type: 'doughnut',
-            data: {
-                labels: [nameValue1, nameValue2],
-                datasets: [
-                    {
-                        label: 'Population',
-                        data: [value1, value2],
-                        backgroundColor: ['#36a2eb', '#ff6384'],
-                    },
-                ],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                title: {
-                    display: true,
-                    text: 'Statistiques de la population cette année',
-                },
-                legend: {
-                    display: true,
-                    position: 'bottom',
-                },
-            },
-        });
-    }, []);
+  React.useEffect(() => {
+      const myChartRef = chartRef.current.getContext('2d');
+      if (myChart) {
+          myChart.destroy();
+      }
+      
+      myChart = new Chart(myChartRef, {
+          type: 'doughnut',
+          data: {
+              labels: [nameValue1, nameValue2],
+              datasets: [
+                  {
+                      label: 'Population',
+                      data: [value1, value2],
+                      backgroundColor: ['#36a2eb', '#ff6384'],
+                  },
+              ],
+          },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              title: {
+                  display: true,
+                  text: 'Statistiques de la population cette année',
+              },
+              legend: {
+                  display: true,
+                  position: 'bottom',
+              },
+          },
+      });
+      
+      return () => {
+          myChart.destroy();
+      }
+  }, [value1, value2]);
 
-    return (
-        <div class='DonutChart'>
-            <canvas id="myChart" ref={chartRef} />
-        </div>
-    );
+  return (
+      <div class='DonutChart'>
+          <canvas id="myChart" ref={chartRef} />
+      </div>
+  );
 };
 
 const PieChart = ({nameData1, nameData2, nameData3, data1, data2, data3}) => {
@@ -149,102 +159,113 @@ const PolarAreaChart = ({ data1, data2, data3 }) => {
 };
 
 class MultiSeriesPieChart extends React.Component {
-    chartRef = React.createRef();
+  chartRef = React.createRef();
 
-    componentDidMount() {
-        const ChartRef = this.chartRef.current.getContext("2d");
+  componentDidMount() {
+    this.initializeChart();
+  }
 
-        const config = {
-            type: "pie",
-            data: {
-                labels: [
-                    "Augmentation population cette année", "Population actuelle",
-                    "Augmentation population aujourd'hui", "Augmentation population cette année",
-                    "Naissances aujourd'hui", "Naissances cette année",
-                    "Morts aujourd'hui", "Morts cette année"
-                ],
-                datasets: [
-                    {
-                        backgroundColor: ['#AAA', '#777'],
-                        
-                        data: [this.props.growth_this_year, this.props.current_population]
-                    },
-                    {
-                        backgroundColor: ['hsl(0, 100%, 60%)', 'hsl(0, 100%, 35%)'],
-                        
-                        data: [this.props.growth_today, this.props.growth_this_year]
-                    },
-                    {
-                        backgroundColor: ['hsl(100, 100%, 60%)', 'hsl(100, 100%, 35%)'],
-                        data: [this.props.births_today, this.props.births_this_year]
-                    },
-                    {
-                        backgroundColor: ['hsl(180, 100%, 60%)', 'hsl(180, 100%, 35%)'],
-                        data: [this.props.deaths_today, this.props.deaths_this_year]
-                    },
-                ]
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      if (typeof this.chart !== 'undefined') {
+        this.chart.destroy();
+      }
+
+      this.initializeChart();
+    }
+  }
+
+  initializeChart() {
+    const ChartRef = this.chartRef.current.getContext('2d');
+
+    const config = {
+      type: "pie",
+      data: {
+        labels: [
+          "Augmentation population cette année", "Population actuelle",
+          "Augmentation population aujourd'hui", "Augmentation population cette année",
+          "Naissances aujourd'hui", "Naissances cette année",
+          "Morts aujourd'hui", "Morts cette année"
+        ],
+        datasets: [
+          {
+            backgroundColor: ['#AAA', '#777'],
+
+            data: [this.props.growth_this_year, this.props.current_population]
+          },
+          {
+            backgroundColor: ['hsl(0, 100%, 60%)', 'hsl(0, 100%, 35%)'],
+
+            data: [this.props.growth_today, this.props.growth_this_year]
+          },
+          {
+            backgroundColor: ['hsl(100, 100%, 60%)', 'hsl(100, 100%, 35%)'],
+            data: [this.props.births_today, this.props.births_this_year]
+          },
+          {
+            backgroundColor: ['hsl(180, 100%, 60%)', 'hsl(180, 100%, 35%)'],
+            data: [this.props.deaths_today, this.props.deaths_this_year]
+          },
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            labels: {
+              generateLabels: function (chart) {
+                const original = Chart.overrides.pie.plugins.legend.labels.generateLabels;
+                const labelsOriginal = original.call(this, chart);
+
+                let datasetColors = chart.data.datasets.map(function (e) {
+                  return e.backgroundColor;
+                });
+                datasetColors = datasetColors.flat();
+
+                labelsOriginal.forEach(label => {
+                  label.datasetIndex = (label.index - label.index % 2) / 2;
+                  label.hidden = !chart.isDatasetVisible(label.datasetIndex);
+                  label.fillStyle = datasetColors[label.index];
+                });
+
+                return labelsOriginal;
+              }
             },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        labels: {
-                            generateLabels: function (chart) {
-                                const original = Chart.overrides.pie.plugins.legend.labels.generateLabels;
-                                const labelsOriginal = original.call(this, chart);
-
-                                let datasetColors = chart.data.datasets.map(function (e) {
-                                    return e.backgroundColor;
-                                });
-                                datasetColors = datasetColors.flat();
-
-                                labelsOriginal.forEach(label => {
-                                    label.datasetIndex = (label.index - label.index % 2) / 2;
-                                    label.hidden = !chart.isDatasetVisible(label.datasetIndex);
-                                    label.fillStyle = datasetColors[label.index];
-                                });
-
-                                return labelsOriginal;
-                            }
-                        },
-                        tooltip: {
-                            callbacks: {
-                              label: function(context) {
-                                const labelIndex = (context.datasetIndex * 2) + context.dataIndex;
-                                return context.chart.data.labels[labelIndex] + ': ' + context.formattedValue;
-                              }
-                            }
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                const labelIndex = context.dataIndex;
-                                const dataset = context.datasetIndex;
-                                const value = context.dataset.data[labelIndex];
-                                const label = context.chart.data.labels[labelIndex];
-                                return label + ': ' + value;
-                            }
-                        }
-                    }
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  const labelIndex = (context.datasetIndex * 2) + context.dataIndex;
+                  return context.chart.data.labels[labelIndex] + ': ' + context.formattedValue;
                 }
+              }
             }
+          },
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                const labelIndex = context.dataIndex;
+                const dataset = context.datasetIndex;
+                const value = context.dataset.data[labelIndex];
+                const label = context.chart.data.labels[labelIndex];
+                return label + ': ' + value;
+              }
+            }
+          }
         }
-        const myChartRef = this.chartRef.current.getContext('2d');
-        if (typeof this.chart !== 'undefined') {
-            this.chart.destroy();
-        }
-        this.chart = new Chart(myChartRef, config);
+      }
     }
 
+    const myChartRef = this.chartRef.current.getContext('2d');
+    this.chart = new Chart(myChartRef, config);
+  }
 
-    render() {
-        return (
-            <div class='MultiSeriesPieChart'>
-                <canvas ref={this.chartRef} />
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className='MultiSeriesPieChart'>
+        <canvas ref={this.chartRef} />
+      </div>
+    )
+  }
 };
 
 const BarChartBorderRadius = ({ nameCol1, nameCol2, data }) => {
@@ -301,15 +322,17 @@ const BarChartBorderRadius = ({ nameCol1, nameCol2, data }) => {
 
 const App = () => {
     let population_stat;
-    
+    let energy_stat;
+    let environment_stat;
+
 
 
     const fetchData = async()=> {
+      // #region population
       try {
         const response = await fetch('http://localhost:3001/population');
         const json = await response.json();
         population_stat = json;
-        console.log(population_stat);
         setData({
           created_at: population_stat.created_at,
           current_population: population_stat.current_population,
@@ -320,49 +343,100 @@ const App = () => {
           growth_this_year: population_stat.growth_this_year,
           growth_today: population_stat.growth_today,
         })
-        console.log("ça marche")
+        console.log('fetch population')
       } catch (error) {
         console.error(error);
       }
+      // #endregion
+      // #region energy
+      try {
+        const response = await fetch('http://localhost:3001/energy');
+        const json = await response.json();
+        energy_stat = json[json.length - 1];
+        //console.log("energy stat", energy_stat);
+        setEnergy({
+          created_at: energy_stat.created_at,
+          energy_used_today: energy_stat.energy_used_today,
+          non_renewable_sources_used_today: energy_stat.non_renewable_sources_used_today,
+          renewable_sources_used_today:energy_stat.renewable_sources_used_today,
+          solar_energy_reaching_earth_today: energy_stat.solar_energy_reaching_earth_today,
+          oil_pumped_today: energy_stat.oil_pumped_today,
+          oil_remaining: energy_stat.oil_remaining,
+          days_to_the_end_of_gas: energy_stat.days_to_the_end_of_gas,
+          coal_remaining: energy_stat.coal_remaining,
+          days_to_the_end_of_coal: energy_stat.days_to_the_end_of_coal,
+        }) 
+        console.log('fetch energy')
+       
+      } catch (error) {
+        console.error(error);
+      }
+      // #endregion
+      // #region environment
+      try {
+        const response = await fetch('http://localhost:3001/environment');
+        const json = await response.json();
+        environment_stat = json;
+        //console.log("energy stat", energy_stat);
+        setEnvironment({
+          created_at:environment_stat.created_at,
+          forest_area_lost_this_year:environment_stat.forest_area_lost_this_year,
+          arable_land_lost_this_year:environment_stat.arable_land_lost_this_year,
+          co2_emissions_this_year:environment_stat.co2_emissions_this_year,
+          desertification_this_year:environment_stat.desertification_this_year,
+          toxic_chemicals_released_this_year:environment_stat.toxic_chemicals_released_this_year,
+        }) 
+        console.log('fetch environment')
+       
+      } catch (error) {
+        console.error(error);
+      }
+      // #endregion
     }
 
     useEffect(()=>{    fetchData();
     },[])
 
-
+  //population
     const [data, setData] = useState({
         created_at: '2023-04-07T07:06:13.000Z',
-        current_population: 8022968573,
-        births_this_year: 28890580,
-        births_today: 257067,
-        deaths_this_year: 14467049,
-        deaths_today: 128727,
-        growth_this_year: 14423531,
-        growth_today: 128340,
-    };
-    const energy = 
-      {
+        current_population: 123,
+        births_this_year: 214,
+        deaths_this_year: 50,
+        deaths_today: 600,
+        growth_this_year: 20,
+        growth_today: 30,
+    }); 
+
+    useEffect(()=>{    console.log("data = ", data);
+    },[data])
+
+
+    const [energy, setEnergy] = useState({
         created_at:"2023-04-07T07:06:13.000Z",
-        energy_used_today:160252695251,
-        non_renewable_sources_used_today:131750127340,
-        renewable_sources_used_today:28502411017,
-        solar_energy_reaching_earth_today:17309196232584,
-        oil_pumped_today:80378520,
-        oil_remaining:1634088999894,
-        days_to_the_end_of_oil:50,
-        gas_remaining:196159000000,
+        energy_used_today:234,
+        non_renewable_sources_used_today:234,
+        renewable_sources_used_today:234,
+        solar_energy_reaching_earth_today:123,
+        oil_pumped_today:123,
+        oil_remaining:123,
+        days_to_the_end_of_oil:123,
+        gas_remaining:123,
         days_to_the_end_of_gas:60,
-        coal_remaining:1086980000000,
-        days_to_the_end_of_coal:142
-      };
-    const environment = {
+        coal_remaining:123,
+        days_to_the_end_of_coal:123
+    });
+  //   useEffect(()=>{    console.log("energy = ", energy);
+  // },[energy])
+
+  const [environment, setEnvironment] = useState({
         created_at:"2023-04-07T07:06:13.000Z",
-        forest_area_lost_this_year:120000,
-        arable_land_lost_this_year:183000,
-        co2_emissions_this_year:32520979240,
-        desertification_this_year:28474000,
-        toxic_chemicals_released_this_year:2000000000
-    };
+        forest_area_lost_this_year:1,
+        arable_land_lost_this_year:2,
+        co2_emissions_this_year:3,
+        desertification_this_year:4,
+        toxic_chemicals_released_this_year:5
+    });
       const health = {
         created_at:"2023-04-07T07:06:13.000Z",
         deaths_of_children_under_five_this_year:59046634,
@@ -502,7 +576,7 @@ const App = () => {
               nameData5={'toxic_chemicals_released_this_year'}
               data1={environment.forest_area_lost_this_year}
               data2={environment.arable_land_lost_this_year}
-              data3={environment.co2_emissions_this_year}
+              //data3={environment.co2_emissions_this_year}
               data4={environment.desertification_this_year}
               data5={environment.toxic_chemicals_released_this_year}
             />
