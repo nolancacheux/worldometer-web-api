@@ -268,7 +268,7 @@ class MultiSeriesPieChart extends React.Component {
   }
 };
 
-const BarChartBorderRadius = ({ nameCol1, nameCol2, nameCol3, nameCol4, nameCol5, nameCol6, data }) => {
+const BarChartBorderRadius = ({ nameCol1, nameCol2, nameCol3, nameCol4, nameCol5, nameCol6, nameCol7, data }) => {
     const chartContainer = useRef(null);
   
     useEffect(() => {
@@ -324,6 +324,14 @@ const BarChartBorderRadius = ({ nameCol1, nameCol2, nameCol3, nameCol4, nameCol5
               borderWidth: 1,
               borderRadius: 10,
             },
+            {
+              label: nameCol7,
+              data: data.map((item) => item.suicides),
+              backgroundColor: 'rgba(255, 99, 132, 0.5)',
+              borderColor: 'rgb(255, 99, 132)',
+              borderWidth: 1,
+              borderRadius: 10,
+            },
           ],
         };
   
@@ -358,6 +366,7 @@ const App = () => {
     let environment_stat;
     let water_stat;
     let health_stat;
+    let eco;
 
 
     const fetchData = async()=> {
@@ -453,7 +462,7 @@ const App = () => {
         const response = await fetch('http://localhost:3001/health');
         const json = await response.json();
         health_stat = json
-        console.log("energy stat", energy_stat);
+        //console.log("energy stat", energy_stat);
         setHealth({
           created_at:health_stat.created_at,
           deaths_of_children_under_five_this_year:health_stat.deaths_of_children_under_five_this_year,
@@ -476,7 +485,27 @@ const App = () => {
         console.error(error);
       }
       // #endregion
+      // #region government-economy
+      try {
+        const response = await fetch('http://localhost:3001/government-economy');
+        const json = await response.json();
+        eco = json
+        //console.log("energy stat", energy_stat);
+        setGouvernmentEconomy({
+          created_at:eco.created_at,
+          global_health_spending_today:eco.global_health_spending_today,
+          global_education_spending_today:eco.global_education_spending_today,
+          global_military_spending_today:eco.global_military_spending_today,
+          cars_produced_this_year:eco.cars_produced_this_year,
+          bicycles_produced_this_year:eco.bicycles_produced_this_year,
+          computers_sold_this_year:eco.computers_sold_this_year
+        }) 
+        console.log('fetch health')
       
+      } catch (error) {
+        console.error(error);
+      }
+      // #endregion
     }
 
     useEffect(()=>{    fetchData();
@@ -576,7 +605,8 @@ const App = () => {
           alcohol:health.deaths_caused_by_alcohol_this_year,
           cancer: health.deaths_caused_by_alcohol_this_year,
           accident:health.deaths_caused_by_road_traffic_accidents_this_year,
-          smoke:health.deaths_caused_by_smoking_this_year
+          smoke:health.deaths_caused_by_smoking_this_year,
+          suicides:health.suicides_this_year
         }
     ];
     
@@ -636,6 +666,7 @@ const App = () => {
                 nameCol4={'cancer'}
                 nameCol5={'road traffic accident'}
                 nameCol6={'smoking'}
+                nameCol7={'suicides'}
                 data={Data}
              
             />
@@ -669,6 +700,27 @@ const App = () => {
               //data3={environment.co2_emissions_this_year}
               data3={environment.desertification_this_year}
               //data5={environment.toxic_chemicals_released_this_year}
+            />
+            <h1>Statistiques sur l'économie</h1>
+            <h2>Argent dépensé Aujourd'hui</h2>
+            <PieChart5
+              nameData1={'éducation'}
+              nameData2={'santé'}
+              nameData3={'militaire'}
+              nameData4={'drogues illégales'}
+             // nameData5={'toxic_chemicals_released_this_year'}
+              data1={gouvernmentEconomy.global_education_spending_today}
+              data2={gouvernmentEconomy.global_health_spending_today}
+              data3={gouvernmentEconomy.global_military_spending_today}
+              data4={(health.money_spent_on_illegal_drugs_this_year)/365}
+              //data5={environment.toxic_chemicals_released_this_year}
+            />
+            <h2>Moyen de transport produits cette année</h2>
+            <DonutChart
+                nameValue1={'Voitures'}
+                nameValue2={'Vélos'}
+                value1={gouvernmentEconomy.cars_produced_this_year}
+                value2={gouvernmentEconomy.bicycles_produced_this_year}
             />
           {/* <h1>Stats water</h1>
             <h2>Flemme</h2>
