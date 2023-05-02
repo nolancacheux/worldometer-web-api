@@ -247,7 +247,7 @@ class MultiSeriesPieChart extends React.Component {
     }
 };
 
-const BarChartBorderRadius = ({ data }) => {
+const BarChartBorderRadius = ({ nameCol1, nameCol2, data }) => {
     const chartContainer = useRef(null);
   
     useEffect(() => {
@@ -256,7 +256,7 @@ const BarChartBorderRadius = ({ data }) => {
           labels: data.map((item) => item.created_at),
           datasets: [
             {
-              label: 'Deaths Today',
+              label: nameCol1,
               data: data.map((item) => item.deaths_today),
               backgroundColor: 'rgba(255, 99, 132, 0.5)',
               borderColor: 'rgb(255, 99, 132)',
@@ -264,7 +264,7 @@ const BarChartBorderRadius = ({ data }) => {
               borderRadius: 10,
             },
             {
-              label: 'Births Today',
+              label: nameCol2,
               data: data.map((item) => item.births_today),
               backgroundColor: 'rgba(54, 162, 235, 0.5)',
               borderColor: 'rgb(54, 162, 235)',
@@ -441,6 +441,8 @@ const App = () => {
             />
             <h2>Statistique Population</h2>
             <BarChartBorderRadius 
+                nameCol1={'deaths'}
+                nameCol2={'births'}
                 data={Data}
             />
           <h1>Stats energy</h1>
