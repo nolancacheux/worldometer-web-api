@@ -295,8 +295,8 @@ const BarChartBorderRadius = ({ nameCol1, nameCol2, nameCol3, nameCol4, nameCol5
             {
               label: nameCol3,
               data: data.map((item) => item.alcohol),
-              backgroundColor: 'rgba(54, 162, 235, 0.5)',
-              borderColor: 'rgb(54, 162, 235)',
+              backgroundColor: '#ff3333',
+              borderColor: '#ff3333',
               borderWidth: 1,
               borderRadius: 10,
             },
@@ -319,8 +319,8 @@ const BarChartBorderRadius = ({ nameCol1, nameCol2, nameCol3, nameCol4, nameCol5
             {
               label: nameCol6,
               data: data.map((item) => item.smoke),
-              backgroundColor: '#81d2c7',
-              borderColor: '#81d2c7',
+              backgroundColor: '#eac4d5',
+              borderColor: '#eac4d5',
               borderWidth: 1,
               borderRadius: 10,
             },
@@ -386,18 +386,23 @@ const App = () => {
         const response = await fetch('http://localhost:3001/energy');
         const json = await response.json();
         energy_stat = json[json.length - 1];
-        //console.log("energy stat", energy_stat);
+        console.log("energy stat oil", energy.oil_remaining);
+        console.log("energy stat gas", energy.gas_remaining);
+
+        
         setEnergy({
           created_at: energy_stat.created_at,
-          energy_used_today: energy_stat.energy_used_today,
-          non_renewable_sources_used_today: energy_stat.non_renewable_sources_used_today,
+          energy_used_today:energy_stat.energy_used_today,
+          non_renewable_sources_used_today:energy_stat.non_renewable_sources_used_today,
           renewable_sources_used_today:energy_stat.renewable_sources_used_today,
-          solar_energy_reaching_earth_today: energy_stat.solar_energy_reaching_earth_today,
-          oil_pumped_today: energy_stat.oil_pumped_today,
-          oil_remaining: energy_stat.oil_remaining,
-          days_to_the_end_of_gas: energy_stat.days_to_the_end_of_gas,
-          coal_remaining: energy_stat.coal_remaining,
-          days_to_the_end_of_coal: energy_stat.days_to_the_end_of_coal,
+          solar_energy_reaching_earth_today:energy_stat.solar_energy_reaching_earth_today,
+          oil_pumped_today:energy_stat.oil_pumped_today,
+          oil_remaining:energy_stat.oil_remaining,
+          days_to_the_end_of_oil:energy_stat.days_to_the_end_of_oil,
+          gas_remaining:energy_stat.gas_remaining,
+          days_to_the_end_of_gas:energy_stat.days_to_the_end_of_gas,
+          coal_remaining:energy_stat.coal_remaining,
+          days_to_the_end_of_coal:energy_stat.days_to_the_end_of_coal
         }) 
         console.log('fetch energy')
        
@@ -448,7 +453,7 @@ const App = () => {
         const response = await fetch('http://localhost:3001/health');
         const json = await response.json();
         health_stat = json
-        //console.log("energy stat", energy_stat);
+        console.log("energy stat", energy_stat);
         setHealth({
           created_at:health_stat.created_at,
           deaths_of_children_under_five_this_year:health_stat.deaths_of_children_under_five_this_year,
@@ -540,7 +545,7 @@ const App = () => {
         water_related_deaths_this_year:3,
         people_without_access_to_clean_water:4
       });
-      const media = {
+      const [media, setMedia] = useState({
         created_at:"2023-04-07T07:06:13.000Z",
         new_books_published_this_year:2883301,
         newspaper_copies_printed_today:24725124,
@@ -552,8 +557,8 @@ const App = () => {
         blog_posts_written_today:847998,
         tweets_sent_today:74834234,
         google_searches_today:6000000000
-      };
-      const gouvernmentEconomy ={
+      });
+      const [gouvernmentEconomy, setGouvernmentEconomy] = useState({
         created_at:"2023-04-07T07:06:13.000Z",
         global_health_spending_today:9333000000,
         global_education_spending_today:4960000000,
@@ -561,7 +566,7 @@ const App = () => {
         cars_produced_this_year:78902622,
         bicycles_produced_this_year:133877527,
         computers_sold_this_year:353182016
-      };
+      });
 
     const Data = [
         {
@@ -580,7 +585,7 @@ const App = () => {
         <div>
           <h1>Worldometer data visualisation</h1>
 
-            <h2>Statistique de la population</h2>
+            <h2>Statistique de population</h2>
             <br></br>
 
             <h3>Cette année</h3>
@@ -607,7 +612,7 @@ const App = () => {
                 deaths_this_year={data.deaths_this_year}
                 growth_this_year={data.growth_this_year}
             />
-            <h2>Statistique Population</h2>
+            {/* <h2>Statistique Population</h2>
             <PieChart
                 nameData1={'Naissances aujourd\'hui'}
                 nameData2={'Décès aujourd\'hui'}
@@ -615,16 +620,16 @@ const App = () => {
                 data1={data.births_today}
                 data2={data.deaths_today}
                 data3={data.growth_today}
-            />
-            <h2>Statistique Population</h2>
+            /> */}
+            {/* <h2>Statistique Population</h2>
             <PolarAreaChart
                 data1={1}
                 data2={2}
                 data3={3}
-            />
-            <h1>Statistiques de mortalité</h1>
+            /> */}
+            <h2>Statistiques de mortalité</h2>
             {/* <h2>Statistique Population</h2> */}
-            {/* <BarChartBorderRadius 
+            <BarChartBorderRadius 
                 nameCol1={'total deaths'}
                 nameCol2={'water'}
                 nameCol3={'alcohol'}
@@ -632,18 +637,17 @@ const App = () => {
                 nameCol5={'road traffic accident'}
                 nameCol6={'smoking'}
                 data={Data}
-                // col1={data.deaths_this_year}
-                //col2={water.water_related_deaths_this_year}
-            /> */}
-          <h1>Stats energy</h1>
-            <h2>Energy renew vs non_renew</h2>
+             
+            />
+          <h1>Statistiques d'énergie</h1>
+            <h2>Energie renouvelable vs non renouvelable</h2>
             <DonutChart
               nameValue1={'energies_renouvelables'}
               nameValue2={'energies_non_renouvelables'}
               value1={energy.renewable_sources_used_today}
               value2={energy.non_renewable_sources_used_today}
             />
-            <h2>Energy</h2>
+            <h2>Part d'énergie non renouvelable restante</h2>
             <PieChart
               nameData1={'pétrol restant'}
               nameData2={'gaz restant'}
@@ -652,21 +656,21 @@ const App = () => {
               data2={energy.gas_remaining}
               data3={energy.coal_remaining}
             />
-          <h1>Stats environment</h1>
-            <h2>Flemme pour les noms</h2>
+          <h1>Statistiques sur l'environment</h1>
+            <h2>Terrains perdus</h2>
             <PieChart5
               nameData1={'forest_area_lost_this_year'}
               nameData2={'arable_land_lost_this_year'}
-              nameData3={'co2_emissions_this_year'}
-              nameData4={'desertification_this_year'}
-              nameData5={'toxic_chemicals_released_this_year'}
+              //nameData3={'co2_emissions_this_year'}
+              nameData3={'desertification_this_year'}
+             // nameData5={'toxic_chemicals_released_this_year'}
               data1={environment.forest_area_lost_this_year}
               data2={environment.arable_land_lost_this_year}
               //data3={environment.co2_emissions_this_year}
-              data4={environment.desertification_this_year}
-              data5={environment.toxic_chemicals_released_this_year}
+              data3={environment.desertification_this_year}
+              //data5={environment.toxic_chemicals_released_this_year}
             />
-          <h1>Stats water</h1>
+          {/* <h1>Stats water</h1>
             <h2>Flemme</h2>
             <DonutChart
               nameValue1={'No water access'}
@@ -683,7 +687,7 @@ const App = () => {
               nameValue2={'total Death'}
               value2={data.deaths_this_year}
               value1={water.water_related_deaths_this_year}
-            />
+            /> */}
         </div>
     );
 };
