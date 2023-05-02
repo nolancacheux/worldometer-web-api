@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import Chart from 'chart.js/auto';
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import './style.css'
+
+
 
 
 const DonutChart = ({ births_this_year, deaths_this_year }) => {  
@@ -265,7 +267,37 @@ const BarChartBorderRadius = ({ data }) => {
 
 
 const App = () => {
-    const data = {
+    let population_stat;
+    
+
+
+    const fetchData = async()=> {
+      try {
+        const response = await fetch('http://localhost:3001/population');
+        const json = await response.json();
+        population_stat = json;
+        console.log(population_stat);
+        setData({
+          created_at: population_stat.created_at,
+          current_population: population_stat.current_population,
+          births_this_year: population_stat.births_this_year,
+          births_today: population_stat.births_today,
+          deaths_this_year: population_stat.deaths_this_year,
+          deaths_today: population_stat.deaths_today,
+          growth_this_year: population_stat.growth_this_year,
+          growth_today: population_stat.growth_today,
+        })
+        console.log("ça marche")
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    useEffect(()=>{    fetchData();
+    },[])
+
+
+    const [data, setData] = useState({
         created_at: '2023-04-07T07:06:13.000Z',
         current_population: 8022968573,
         births_this_year: 28890580,
@@ -274,7 +306,8 @@ const App = () => {
         deaths_today: 128727,
         growth_this_year: 14423531,
         growth_today: 128340,
-    };
+    });
+
 
     const Data = [
         {

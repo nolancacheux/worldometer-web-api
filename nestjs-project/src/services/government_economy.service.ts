@@ -14,23 +14,28 @@ export class GovernmentEconomyService {
     return await this.governmentEconomyRepository.find();
   }
 
-  async create(governmentEconomy: GovernmentEconomy): Promise<GovernmentEconomy> {
+  async create(
+    governmentEconomy: GovernmentEconomy,
+  ): Promise<GovernmentEconomy> {
     return await this.governmentEconomyRepository.save(governmentEconomy);
   }
 
-  async update(id: number, governmentEconomy: GovernmentEconomy): Promise<void> {
+  async update(
+    id: number,
+    governmentEconomy: GovernmentEconomy,
+  ): Promise<void> {
     await this.governmentEconomyRepository.update(id, governmentEconomy);
   }
 
   async delete(id: number): Promise<void> {
     await this.governmentEconomyRepository.delete(id);
   }
-  
+
   async getLatestGovernmentEconomyData(): Promise<GovernmentEconomy> {
     const data = await this.governmentEconomyRepository.find({
-        order: { created_at: 'DESC' },
-        take: 1,
-      });
-      return data[0];
+      order: { created_at: 'DESC' },
+      take: 1,
+    });
+    return data[0];
   }
 }
